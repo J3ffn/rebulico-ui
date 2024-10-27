@@ -1,8 +1,10 @@
 .HighlightNews_container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   /* background-color: yellow; */
+  text-decoration: none;
+  color: unset;
 }
 
 .HighlightNews_container h1 {
@@ -15,4 +17,13 @@
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0px 3px 4px 00px rgba(0, 0, 0, 50%);
+}
+
+.HighlightNews_container:hover {
+  transform: translateY(-5px);
+  transition: .5s;
+  
+  & .HighlightNews_container img {
+    box-shadow: 0px 3px 4px 00px rgba(0, 0, 0, 50%);
+  }
 }

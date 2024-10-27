@@ -1,0 +1,24 @@
+.author_post_container {
+  display: flex;
+  gap: 10px;
+}
+
+.author_image_container {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.author_informations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.author_informations .author_name {
+  font-weight: 600;
+}
+
+.author_informations .author_contribuition {
+  color: var(--color-neutral-medium-2);
+  font-weight: 500;
+}

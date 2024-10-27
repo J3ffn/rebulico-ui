@@ -4,6 +4,7 @@ export default interface HighlightNewsModel {
   author: {
     id: string;
     name: string;
+    imageSrc: string;
   };
   read_time: number;
   media: {

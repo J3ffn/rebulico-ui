@@ -1,0 +1,8 @@
+.tagPost_container {
+  display: flex;
+  gap: 10px;
+}
+
+.tagText {
+  color: #931981;
+}

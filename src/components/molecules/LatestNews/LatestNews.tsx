@@ -2,6 +2,10 @@ import React from "react";
 import { LatestNewsModel } from "src/shared/models/LatestNewsModel.model";
 
 import styles from "./LatestNews.module.css";
+import TagPost from "src/components/atoms/Tag/TagNotice";
+import { Link } from "react-router-dom";
+
+import { Img } from "react-image";
 
 interface LatestNewsProps {
   content: LatestNewsModel[];
@@ -11,16 +15,25 @@ const LatestNews: React.FC<LatestNewsProps> = ({ content }) => {
   return (
     <div className={styles.latestNews_container}>
       {content.map((item, index) => (
-        <div key={`latestNews-${index}`} className={styles.latestNews_item}>
+        <Link
+          to={`/noticia/${item.id}`}
+          key={`latestNews-${index}`}
+          className={styles.latestNews_item}
+        >
           <div className={styles.latestNews_item_informations}>
             <h2>{item.title}</h2>
             <h3>{item.initialText}</h3>
-            <span>{item.tag} | {item.read_time}</span>
+            <TagPost tagText={item.tag} read_time={item.read_time} />
           </div>
           <div className={styles.latestNews_item_image}>
-            <img src={item.media.url} alt={item.media.alt} />
+            <Img
+              src={item.media.url}
+              alt={item.media.alt}
+              loader={<span>Carregando imagem...</span>}
+              unloader={<span>Erro ao carregar a imagem</span>}
+            />
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
