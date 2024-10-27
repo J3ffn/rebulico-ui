@@ -72,13 +72,13 @@ O back-end foi construído utilizando Node.js, com o framework NestJS para estru
 1. Inicialização
 
    ```bash
-   npm run dev
+   npm run local
    ```
 
    ou
 
    ```bash
-   yarn dev
+   yarn local
    ```
 
 2. Visualização

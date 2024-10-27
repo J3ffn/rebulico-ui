@@ -6,7 +6,7 @@ interface ContentBoundTemplateProps {
 }
 
 const ContentBound: React.FC<ContentBoundTemplateProps> = ({ children }) => {
-  return <div id="limit-leyout" className={styles.leyout_template_container}>{children}</div>;
+  return <div id="content-bound" className={styles.leyout_template_container}>{children}</div>;
 };
 
 export default ContentBound;
