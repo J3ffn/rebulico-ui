@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Helvetica neue 5';
+  src: url(./assets/fonts/helvetica-neue-5/HelveticaNeueLight.otf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica neue 5';
+  src: url(./assets/fonts/helvetica-neue-5/HelveticaNeueMedium.otf);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica neue 5';
+  src: url(./assets/fonts/helvetica-neue-5/HelveticaNeueBold.otf);
+  font-weight: 700;
+  font-style: normal;
+}
+

@@ -1,0 +1,23 @@
+@import url("./styles/global/global.css");
+
+:root {
+  --font-family: "Heuvetica neue 5";
+  /* Cores Primárias */
+  --color-primary: #931981;
+
+  /* Cores Secundárias */
+  --color-secondary-1: #f6a917;
+  --color-secondary-2: #7f7f7f;
+
+  /* Cores Neutras */
+  --color-neutral-dark: #000000;
+  --color-neutral-light: #f0f0f0;
+  --color-neutral-medium-1: #e9e9e9;
+  --color-neutral-medium-2: #b1b1b1;
+}
+
+* {
+  /* outline: auto; */
+  margin: 0;
+  padding: 0;
+}

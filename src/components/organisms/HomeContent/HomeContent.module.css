@@ -1,0 +1,9 @@
+.home_content_container {
+  display: flex;
+}
+
+.principals_news_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}

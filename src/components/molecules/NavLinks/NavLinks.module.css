@@ -1,0 +1,10 @@
+.nav_links_container a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav_links_container {
+  display: flex;
+  gap: 25px;
+  font-size: 1rem;
+}

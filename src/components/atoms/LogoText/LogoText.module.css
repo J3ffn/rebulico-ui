@@ -1,0 +1,9 @@
+.logoText {
+  color: transparent;
+  -webkit-text-stroke: 1px #ff5722;
+  user-select: none;
+}
+
+.logoText img {
+  width: 135px;
+}
