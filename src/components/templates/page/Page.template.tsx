@@ -27,7 +27,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ mainContent }) => {
             justifyContent: "center",
           }}
         />
-        {mainContent}
+        <div id="main_content" className={styles.page_template_main_content}>
+          {mainContent}
+        </div>
       </PrincipalsNoticesStorage>
       {/* <Footer /> */}
     </div>

@@ -1,0 +1,12 @@
+.notice_page_content_container {
+  
+}
+
+.notice_page_content_container img {
+  border-radius: 10px;
+}
+
+.notice_page_body_container {
+  display: grid;
+  grid-template-columns: 1fr 30%;
+}
