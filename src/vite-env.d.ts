@@ -4,7 +4,9 @@
 // Tipos de importação para arquivos de mícdia
 declare module "*.svg" {
   const content: any;
-  export default content;
+  const name: string;
+  const src: string;
+  export default { content, name, src };
 }
 
 declare module "*.png" {

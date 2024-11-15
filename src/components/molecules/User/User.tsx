@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./User.module.css";
-import defaultImage from "src/assets/defaultImages/UserIcon.svg";
+import defaultImage from "src/assets/images/default/UserIcon.svg";
 
 const User = () => {
   const [userImage, _] = React.useState(

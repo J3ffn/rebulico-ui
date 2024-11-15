@@ -1,7 +1,7 @@
 <div align="center">
-   <img src="./src/assets/defaultImages/SiteLogo.svg" width="220" height="120"/>
+   <img src="./src/assets/images/default/SiteLogo.svg" width="220" height="120"/>
    <br />
-   <img src="./src/assets/defaultImages/SiteLogoText.png" height="100"/>
+   <img src="./src/assets/images/default/SiteLogoText.png" height="100"/>
 </div>
 
 # Rebuliço

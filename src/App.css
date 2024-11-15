@@ -1,8 +1,9 @@
 body {
-  font-family: 'Heuvetica neue 5', sans-serif;
+  font-family: "Heuvetica neue 5", sans-serif;
 }
 
 h1 {
+  font-size: 2.5rem;
   font-weight: 700;
 }
 
@@ -17,4 +18,3 @@ p {
 .small-text {
   font-weight: 100;
 }
-

@@ -6,4 +6,5 @@
 
 .logoText img {
   width: 135px;
+  transform: translateY(4px);
 }

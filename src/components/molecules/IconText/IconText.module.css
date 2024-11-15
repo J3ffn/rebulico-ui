@@ -1,0 +1,14 @@
+.icon_text_container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon_text_container img {
+  width: 27px;
+}
+
+.text_content {
+  font-weight: 400;
+}

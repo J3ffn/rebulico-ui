@@ -1,0 +1,125 @@
+{
+  "uuid": "e971d2f8-a320-4363-b765-de33d3a7b55d",
+  "lastMigration": 32,
+  "name": "Rebulico",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8081,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "48af3aa5-b04a-4a99-9521-cad6d350a644",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "principals/notices",
+      "responses": [
+        {
+          "uuid": "b7d481b1-1668-434f-b3e2-a5d0056d17db",
+          "body": "{\n  \"highlight\": {\n    \"id\": \"63f2b1c2\",\n    \"title\": \"A luta do MLB em João Pessoa está longe de seu fim\",\n    \"author\": {\n      \"id\": \"1234\",\n      \"name\": \"Aquila Silva\",\n      \"imageSrc\": \"https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png\"\n    },\n    \"read_time\": 6,\n    \"media\": {\n      \"type\": \"image\",\n      \"url\": \"https://i.ibb.co/4dPnVzp/ttpng.png\",\n      \"alt\": \"Imagem descritiva\"\n    },\n    \"published_at\": \"2024-10-21T12:00:00\",\n    \"tag\": \"Notícia\",\n    \"summary\": \"Uma breve introdução ou resumo da notícia em destaque.\"\n  },\n  \"latest_news\": [\n    {\n      \"id\": \"63f2b1c3\",\n      \"title\": \"Ana Goveia Ministra palestra no campus\",\n      \"initialText\": \"Ana Goveia, renomada especialista em jornalismo visual, será a palestrante convidada ...\",\n      \"author\": {\n        \"id\": \"2345\",\n        \"name\": \"Autor Exemplo\"\n      },\n      \"read_time\": 3,\n      \"media\": {\n        \"type\": \"image\",\n        \"url\": \"https://i.ibb.co/RBMBSPd/Mulher-pr.png\",\n        \"alt\": \"Descrição da imagem\"\n      },\n      \"published_at\": \"2024-10-20T14:00:00\",\n      \"tag\": \"Notícia\"\n    },\n    {\n      \"id\": \"63f2b1c4\",\n      \"title\": \"Garimpo ilegal impacta profundamente as terras indígenas\",\n      \"initialText\": \"A exploração do garimpo ilegal tem impactado profundamente as terras ...\",\n      \"author\": {\n        \"id\": \"3456\",\n        \"name\": \"Autor Exemplo 2\"\n      },\n      \"read_time\": 5,\n      \"media\": {\n        \"type\": \"image\",\n        \"url\": \"https://i.ibb.co/4PsF2px/Garimpo.png\",\n        \"alt\": \"Descrição da imagem\"\n      },\n      \"published_at\": \"2024-10-20T10:00:00\",\n      \"tag\": \"Notícia\"\n    },\n    {\n      \"id\": \"63f2b1c5\",\n      \"title\": \"Homicídios por descriminação LGBT+ cresce\",\n      \"initialText\": \"Crimes de homicídio que envolvam discriminação contra população LGBT+ serão ...\",\n      \"author\": {\n        \"id\": \"3456\",\n        \"name\": \"Autor Exemplo 2\"\n      },\n      \"read_time\": 5,\n      \"media\": {\n        \"type\": \"image\",\n        \"url\": \"https://i.ibb.co/fFVLpmL/Menine.png\",\n        \"alt\": \"Descrição da imagem\"\n      },\n      \"published_at\": \"2024-10-20T10:00:00\",\n      \"tag\": \"Notícia\"\n    }\n  ],\n  \"latest_posts\": [\n    {\n      \"id\": \"63f2b1c5\",\n      \"title\": \"Direita e religião souberam manipular raiva dos pobres, diz Jessé Souza\",\n      \"author\": {\n        \"id\": \"4567\",\n        \"name\": \"Aquila Silva\"\n      },\n      \"read_time\": 3,\n      \"media\": {\n        \"type\": \"image\",\n        \"url\": \"https://link-da-imagem.jpg\",\n        \"alt\": \"Descrição da imagem\"\n      },\n      \"published_at\": \"2024-10-20T18:00:00\",\n      \"tag\": \"Notícia\"\n    },\n    {\n      \"id\": \"63f2b1c6\",\n      \"title\": \"Rayssa domina e vai à final do STU Rio com maior nota\",\n      \"author\": {\n        \"id\": \"5678\",\n        \"name\": \"José Soares\"\n      },\n      \"read_time\": 3,\n      \"media\": {\n        \"type\": \"image\",\n        \"url\": \"https://link-da-imagem.jpg\",\n        \"alt\": \"Descrição da imagem\"\n      },\n      \"published_at\": \"2024-10-20T17:00:00\",\n      \"tag\": \"Notícia\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Ana Goveia Ministra palestra",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "ae153651-7252-4da8-bbad-8abe22956c30",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "notice/*",
+      "responses": [
+        {
+          "uuid": "166f68fa-301e-4ba1-ad8d-f3325af06e47",
+          "body": "{\n  \"title\": \"Mulher escorrega e fica pendurada em janela de prédio\",\n  \"author\": {\n    \"id\":  \"653b70c8e45d999ebe92a104\",\n    \"name\": \"Áquila Silva\",\n    \"profile_image\": \"https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png\"\n  },\n  \"read_time\": 3,\n  \"status\": \"published\",\n  \"content\": \"<div class='notice_page_content'> <style>.notice_page_content{font-family: Arial, sans-serif; margin: 0 auto; padding: 20px; line-height: 1.6;}.notice_page_content h1{font-size: 2em; margin-bottom: 0.5em;}.notice_page_content .author, .notice_page_content .date, .notice_page_content .caption{font-size: 0.9em; color: #555; margin-bottom: 1em;}.notice_page_content img{width: 100%; width: 100% height: auto; margin: 1em 0;}.notice_page_content .caption{font-style: italic; text-align: center;}.notice_page_content .interview-section{border-top: 1px solid #ddd; margin-top: 2em; padding-top: 1em;}.notice_page_content .quote{border-left: 4px solid #333; padding-left: 10px; margin: 1em 0; color: #333; font-style: italic;}</style><img src='https://i.ibb.co/vstsfND/IOaSCAS.png' alt='Bandeira do movimento MLB'> <p class='caption'>Bandeira do movimento (MLB), afirmando direitos dos pobres.</p><p>O MLB (Movimento de Luta nos Bairros, Vilas e Favelas), é um movimento social nacional que luta pela reforma urbana e pelo direito humano de morar dignamente, eles são um movimento puramente formado por famílias desabrigadas ou sem expectativas de moradia em todo o país, que tem sido vítimas da ação predatória da especulação fundiária e imobiliária. Acreditam que esta reforma que o movimento visa implementar é um meio, um instrumento que faz parte da classe trabalhadora para construir uma sociedade de certa forma diferente dessa como conhecemos: com igualdade, dignidade e direitos para todos. </p><img src='https://i.ibb.co/4dPnVzp/ttpng.png' alt='Integrantes do MLB em pose de protesto'> <p class='caption'>Na imagem: Joyce Moura, Lúcia Silva e Pedro Santos, membros do movimento.</p><p>Em João Pessoa o movimento se encontra ativo na luta há mais de 20 anos, mas a primeira ocupação bem sucedida se deu na madrugada do dia 04 de abril de 2022, com pouco mais de dois meses, o edifício é localizado próximo ao ponto Cem Réis, o prédio das Nações Unidas conta com cinco pavimentos, 4 andares e com 54 salas que eram destinadas a diversos usos, como escritórios e comércio. Além disso, o edifício conta com áreas de circulação, um elevador que no momento está interditado devido às más condições do tempo e uma área de subsolo, totalizando aproximadamente 765 metros quadrados (m²). A ocupação se dá até o terceiro andar do prédio, pois o quarto andar se encontra seriamente debilitado devido às chuvas e a degradação do espaço pelo tempo.</p><img src='https://i.ibb.co/dmPw3qs/ASCAW.png' alt='Imagens do edifício ocupado pelo MLB'> <p class='caption'>Edifício onde ocorre a ocupação. Foto por Aquila Silva.</p><p>Segundo a matéria do portal da prefeitura de João Pessoa, publicada no dia 05 de abril de 2022, o local encontra-se impossibilitado para habitação, segundo laudo emitido pela Coordenação Municipal de Proteção e Defesa Civil (Compdec/JP). Os técnicos do Instituto do Patrimônio Histórico e Artístico do Estado da Paraíba (Iphaep) e da Secretaria Municipal de Habitação Social (Semhab) fizeram uma análise da estrutura do prédio para tratar da questão da afiação, e dos escoamentos que estão acometendo todo o quarto andar, e apresentando riscos de desabamento segundo os especialistas, porém os próprios moradores do prédio tem tratado das questões de manutenção do local, como foi citado pela entrevistada Joyce Moura.</p><div class='interview-section'> <h2>Entrevista</h2> <div class='quote'> <p>“São as famílias que constroem a ocupação, a gente está aqui porque tem mais experiência e tem esse sentido de dar a linha, de como tem que ser. Mas a gente forma uma comissão para tudo, não tem como uma, duas, cinco pessoas dar conta de construir uma ocupação, é impossível. Então as famílias fazem a limpeza, cuidam da cozinha, cuidam da estrutura do prédio, por exemplo essa afiação aqui foram os moradores que colocaram toda a energia do prédio.” <br/> <br/> “Tudo que a gente constrói é com autofinanciamento, aí a gente faz essa conversa com as famílias da questão de contribuição, toda família para vir para cá teve que contribuir com a taxa, e aí as famílias pagaram essa taxa e a gente conseguiu comprar tudo isso que a gente precisou utilizar. Inclusive no dia da ocupação VIERAM dois ônibus, a gente teve que conseguir uma picape também para transportar fogão; geladeira, tudo isso.”</p><p>- Joyce Moura</p></div><p>Joyce explica que a luta do MLB não é apenas para as questões de moradia, mas também...</p></div><p>A entrevistada Joyce explica que essa taxa que é colocada para os moradores da ocupação é variável, dependendo do que for feito para a manutenção, no período que foi necessária a taxa, o valor cobrado para as famílias foi de R$60,00, este valor é destinado por exemplo para compra de portas, reparos técnicos no prédio, alimentação e tudo que for necessário para o bem estar da comunidade do prédio. A prefeitura municipal de João Pessoa, não tem disponibilizado de nenhum projeto que ajude diretamente o movimento e a ocupação, segundo Joyce</p><div class='interview-section'> <h2>Entrevista</h2> <div class='quote'> <p>“Antes de vir para cá a gente fez vários atos, assim, a gente ocupou o gabinete do prefeito, ocupou uma Secretaria de desenvolvimento duas vezes, isso exigindo cesta básica, porque foi mais ali no meio da pandemia que a situação…( não que não esteja agora, né? porque tá tão ruim quanto) a situação estava catastrófica. Mas a gente não tem nada deles de graça, eles não vão chegar na gente e dizer: Olhe, a gente tem que lutar e ir atrás, a gente tem que lutar para conseguir e conquistar. E a gente deixa isso muito claro para as famílias e elas sabem, né?! Porque elas sentem na pele o abandono do poder público.”<br/><br/> “A principal comunidade onde a gente fez esse trabalho, foi a comunidade no João Paulo Segundo, é um bairro que não tem saneamento básico, é o esgoto passando na rua, tem várias ruas que são meio que ladeiras e que cheio de pedra, tem idoso, criança, mulher grávida que caiu no meio da rua porque simplesmente é um monte de pedra empilhada.”<br/><br/> “Então o poder público não vai nesses lugares, e inclusive isso é algo entre alguns moradores falaram que durante a campanha para prefeito da cidade o Cícero Lucena foi lá dizer que ia ter leite e pão toda semana para famílias e aí é algo que elas batem muito com essa questão, porque eles prometem mas não fazem, e isso é um problema porque as pessoas elas ficam desacreditados na polícia então qualquer outra alternativa, mesmo uma alternativa como a Unidade Popular, como é o nosso partido, feito por estudante, trabalhador de telemarketing, trabalhador de construção civil, mesmo esse partido, as pessoas foram tão enganadas que elas têm dificuldade de acreditar na gente. Acham que vai ser igual.”</p><p>- Joyce Moura</p></div></div><p> Comenta Joyce indignada sobre o descaso do poder público com as famílias em situação de vulnerabilidade, tanto alimentar quanto de moradia, uma situação que se estende ao longo de vielas e favelas pessoenses que são ocultadas pela grande mídia, onde não é mostrado a verdadeira realidade do que se passa, o sofrimento estampado nos rostos daqueles que enfrentam essa dura labuta do dia a dia, e que vêem no movimento uma esperança daquilo que se pode esperar de uma luta popular.”<br/><br/> Na ocupação do MLB, o dia a dia dos moradores é uma gigantesca correria, mas tem seus momentos de lazer e recreação em conjunto, como por exemplo: exibição de filmes, creche para as mais de 20 crianças que residem o local, terapia comunitária, grupo de maracatu que realizaram apresentação de capoeira, e além disso a roda de leitura participativa para ler o jornal “A verdade”, jornal do MLB, que está em circulação há mais de 20 anos, apelidado carinhosamente de JAV, criado pelos próprios trabalhadores, inspirado no jornal bolchevique de nome Pravda, que em português significa “A Verdade”. </p><div class='interview-section'> <h2>Visão do Movimento</h2> <p>Além de organizar protestos e marchas, o MLB proporciona atividades culturais e de lazer para a comunidade.</p></div><img src='https://i.ibb.co/hsBxMQ9/ACAWCASVA.png' alt='Reunião do MLB'> <p class='caption'>Reunião do MLB discutindo estratégias e direitos. Foto por Maria Oliveira.</p><p>Quanto a rotina dos moradores as atividades diárias são divididas em tarefas. Existe uma cozinha comunitária onde é feita a refeição para os moradores aproveitando todos os mantimentos disponíveis sem haver um cardápio específico. O morador e coordenador do movimento João Batista fala: “Mas sem um cuscuz no café da manhã não dá!”. A comunidade é dividida de modo voluntário para os afazeres de acordo com a disponibilidade de cada morador, tudo isso em prol do bom convívio em sociedade.</p><div class='interview-section'> <h2>Entrevista</h2> <div class='quote'> <p>“Geralmente a gente acorda umas 6:00 horas aqui quem vai fazer o café da manhã acorda mais cedo geralmente aí a gente divide em comissões como eu falei para tu, aí cada comissão inicia o dia realizando sua atividade né, fazer café da manhã, fazer a limpeza…”</p><p>- Joyce Moura</p></div></div><p> Para participar do movimento é realizado um cadastro de filiação. Joyce e João explicam como é feita a proposta, é realizada essa escolha de uma comunidade com o perfil de situação de vulnerabilidade, faz a leitura do jornal, mostra o documentário, vídeo sobre como é ocupação, organiza e faz o cadastramento dessas pessoas para ocupação. Para conhecer mais sobre o movimento de Luta nos Bairros, Vilas e Favelas (MLB) acesse o site oficial:</p><footer> <p>Fonte: MLB Brasil, 2022. Disponível em: Acesso em 08 de junho de 2022</p></footer></div>\",\n  \"published_at\": {\n    \"$date\": \"2024-10-22T14:00:00.000Z\"\n  },\n  \"tag\": {\n    \"_id\": {\n      \"$oid\": \"653b70f8e45d999ebe92a106\"\n    },\n    \"name\": \"Notícia\",\n    \"slug\": \"noticia\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "48af3aa5-b04a-4a99-9521-cad6d350a644"
+    },
+    {
+      "type": "route",
+      "uuid": "ae153651-7252-4da8-bbad-8abe22956c30"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

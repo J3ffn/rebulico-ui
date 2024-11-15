@@ -1,15 +1,14 @@
-import React from "react";
-import styles from "./Button.module.css";
+import React from 'react';
 
-type ButtonProps = {
-  attributes: React.ButtonHTMLAttributes<HTMLButtonElement>;
-  children: React.ReactNode;
-};
+interface ButtonProps {
+  onClick: () => void;
+  label: string;
+}
 
-const Button: React.FC<ButtonProps> = ({ attributes, children }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, label }) => {
   return (
-    <button className={styles.btn} {...attributes}>
-      {children}
+    <button onClick={onClick}>
+      {label}
     </button>
   );
 };

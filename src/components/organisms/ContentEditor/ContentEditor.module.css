@@ -1,0 +1,25 @@
+.content_editor_container > * {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.content_editor_container:first {
+  /* background-color: black; */
+  /* padding: 30px; */
+}
+
+.content_editor_container {
+  /* border: .1px solid #A6EFFF; */
+}
+
+.content_editor_container .MuiTiptap-RichTextField-menuBar {
+  /* border: .1px solid #A6EFFF; */
+  border-radius: 30px;
+}
+
+.content_editor_container div[role="textbox"] {
+  background-color: #fff;
+  border: none;
+  padding: 25px;
+  min-height: 496px;
+}
