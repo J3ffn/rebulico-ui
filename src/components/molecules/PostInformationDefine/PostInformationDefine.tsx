@@ -7,6 +7,7 @@ import styles from "./PostInformationDefine.module.css";
 import Input from "src/components/atoms/Input/Input";
 import Select from "src/components/atoms/select/Select";
 import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
+import Label from "src/components/atoms/label/Label";
 // import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
 
 const PostInformationDefine = () => {
@@ -44,13 +45,14 @@ const PostInformationDefine = () => {
         <div
           className={`${styles.postInformation__form_line} ${styles.postInformation__form_firstLine}`}
         >
-          <Input
-            attributes={{
-              name: "Título",
-              placeholder: "Ex: Sorteio de carro se mostra ser golpe...",
-              style: { minWidth: "278px" },
-            }}
-          />
+          <Label text="Título:" htmlFor="title" required>
+            <Input
+              id="title"
+              stylesPersonalized={{ minWidth: "278px" }}
+              placeholder="Ex: Sorteio de carro se mostra ser golpe..."
+            />
+          </Label>
+
           <Select
             label="Tag"
             placeholder="Selecionen uma Tag"
@@ -65,10 +67,14 @@ const PostInformationDefine = () => {
               },
             }}
           />
-          <Input
-            attributes={{ name: "Tempo de leitura:", type: "number" }}
-            width="125px"
-          />
+
+          <Label text="Tempo de leitura:" htmlFor="read-time" required>
+            <Input
+              id="read-time"
+              stylesPersonalized={{ width: "125px" }}
+              placeholder="Tempo de leitura"
+            />
+          </Label>
         </div>
         <div
           className={`${styles.postInformation__form_line} ${styles.postInformation__form_secondLine}`}
@@ -98,23 +104,23 @@ const PostInformationDefine = () => {
                 />
                 Outra pessoa
                 <Input
+                  id={"Anouther-person"}
                   ref={anotherPersonInputRef}
-                  attributes={{
-                    style: { display: "inline" },
-                    disabled: !anoutherPerson,
-                    placeholder: !anoutherPerson
+                  stylesPersonalized={{ display: "inline" }}
+                  placeholder={
+                    !anoutherPerson
                       ? "Desabilitado"
-                      : "Digite o nome do autor...",
-                    autoFocus: !anoutherPerson,
-                  }}
+                      : "Digite o nome do autor..."
+                  }
+                  disabled={!anoutherPerson}
                 />
               </label>
             </div>
           </div>
-          <Input
-            attributes={{ name: "Colaborador:", type: "text" }}
-            width="125px"
-          />
+          <Label text="Colaborador:" htmlFor="colaborater">
+            <Input id="colaborater" stylesPersonalized={{ width: "125px" }} />
+          </Label>
+
           <label htmlFor="">
             Imagem principal
             <ImageUpload

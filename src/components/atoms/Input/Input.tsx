@@ -2,21 +2,30 @@ import React from "react";
 import style from "./Input.module.css";
 
 type InputProps = {
-  attributes: React.InputHTMLAttributes<HTMLInputElement>;
-  width?: string;
+  id: string;
+  type?: string;
+  placeholder?: string;
+  stylesPersonalized?: React.CSSProperties;
+  disabled?: boolean;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ attributes, width }, ref) => {
-  return (
-    <label
-      htmlFor={attributes.name}
-      className={style.input_container}
-      style={{ width: width, gap: "5px", ...attributes.style }}
-    >
-      {attributes.name}
-      <input ref={ref} {...attributes} id={attributes.name} className={style.input} />
-    </label>
-  );
-});
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (
+    { id, placeholder, stylesPersonalized, type = "text", disabled = false },
+    ref
+  ) => {
+    return (
+      <input
+        ref={ref}
+        id={id}
+        className={style.input}
+        placeholder={placeholder}
+        style={stylesPersonalized}
+        type={type}
+        disabled={disabled}
+      />
+    );
+  }
+);
 
 export default Input;

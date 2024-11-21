@@ -1,0 +1,12 @@
+.login_form_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  max-width: 500px;
+  gap: 20px;
+}
+
+.login_form_password_container {
+
+}
