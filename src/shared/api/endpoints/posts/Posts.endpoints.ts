@@ -1,6 +1,6 @@
 import { DefaultNotice, NoticesWithDetails } from "src/utiils/mocks/Notices";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+// const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const getPrincipalsPosts = async () => {
   // try {
