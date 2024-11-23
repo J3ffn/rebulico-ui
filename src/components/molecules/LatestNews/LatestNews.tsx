@@ -1,14 +1,14 @@
 import React from "react";
-import { LatestNewsModel } from "src/shared/models/LatestNewsModel.model";
 
 import styles from "./LatestNews.module.css";
 import TagPost from "src/components/atoms/Tag/TagNotice";
 import { Link } from "react-router-dom";
 
 import { Img } from "react-image";
+import { NewsItem } from "src/shared/models/PrincipalsNotices.model";
 
 interface LatestNewsProps {
-  content: LatestNewsModel[];
+  content: NewsItem[];
 }
 
 const LatestNews: React.FC<LatestNewsProps> = ({ content }) => {

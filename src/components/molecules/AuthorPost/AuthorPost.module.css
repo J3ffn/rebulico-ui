@@ -1,17 +1,17 @@
 .author_post_container {
   display: flex;
   gap: 10px;
-  
+  border-radius: 10px;
 }
 
-.author_image_container {
-  box-shadow: 0px 3px 4px 00px rgba(0, 0, 0, 50%);
+.author_image_container img {
+
 }
 
 .author_image_container, .author_image_container img {
   max-width: 40px;
   max-height: 40px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .author_informations {

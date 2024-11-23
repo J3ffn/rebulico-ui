@@ -7,6 +7,9 @@ import User from "src/components/molecules/User/User";
 import LogoText from "src/components/atoms/LogoText";
 import { PrincipalsNoticesStorage } from "src/context/principalsNotices/PrincipalsNotices.context";
 
+import Footer from "src/components/organisms/Footer/Footer";
+import { Divider } from "@mui/material";
+
 interface PageTemplateProps {
   mainContent: React.ReactNode;
 }
@@ -21,7 +24,17 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ mainContent }) => {
         />
         <Header
           colorVariable={"--color-neutral-light"}
-          content={[, /* <Menu /> */ <LogoText /> /* <Finder /> */]}
+          content={[
+            /* <Menu /> */ 
+            <Logo />,
+            <LogoText iamgeSx={{ width: "166px", height: "45px" }} />,
+            <Divider
+              sx={{ width: "3px", height: "20px", margin: "0  10px" }}
+              orientation="vertical"
+              flexItem
+            />,
+            <h3>Projeto de extensão PROBEX UFPB</h3> /* <Finder /> */,
+          ]}
           personStyles={{
             backgroundColor: "var(--color-neutral-light)",
             justifyContent: "center",
@@ -31,7 +44,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ mainContent }) => {
           {mainContent}
         </div>
       </PrincipalsNoticesStorage>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

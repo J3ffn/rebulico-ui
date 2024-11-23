@@ -10,3 +10,21 @@
 .login_form_password_container {
 
 }
+
+.button_container {
+  width: 100%;
+  align-items: end;
+}
+
+.button_container button {
+  display: flex;
+  width: 90px;
+  height: 40px;
+  border-radius: 09px;
+  justify-self: end;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: #fff;
+}

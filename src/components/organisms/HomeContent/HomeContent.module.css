@@ -1,9 +1,27 @@
 .home_content_container {
   display: flex;
+  flex-direction: column;
 }
 
 .principals_news_section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+.recent_updates_section {
+  margin-top: 40px;
+}
+
+.recent_updates_section, .latest_posts_section {
+  width: 100%;
+  background-color: #FFF;
+}
+
+.latest_posts_container {
+  /* background-color: black; */
+}
+
+.recent_updates_container {
+
 }

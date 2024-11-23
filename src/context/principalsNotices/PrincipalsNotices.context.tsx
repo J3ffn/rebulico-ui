@@ -4,7 +4,7 @@ import { getPrincipalsPosts } from "src/shared/api";
 import PrincipalsNoticesModel from "src/shared/models/PrincipalsNotices.model";
 
 interface PrincipalsNoticesContextType {
-  principalsNotices: any;
+  principalsNotices: PrincipalsNoticesModel | undefined;
   loading: any;
 }
 
@@ -13,7 +13,8 @@ export const PrincipalsNoticesContext = React.createContext<
 >(undefined);
 
 export const PrincipalsNoticesStorage = ({ children }: any) => {
-  const [principalsNotices, setPrincipalsNotices] = React.useState<PrincipalsNoticesModel>();
+  const [principalsNotices, setPrincipalsNotices] =
+    React.useState<PrincipalsNoticesModel>();
   const [loading, setLoading] = LoadingState(true);
 
   React.useEffect(() => {

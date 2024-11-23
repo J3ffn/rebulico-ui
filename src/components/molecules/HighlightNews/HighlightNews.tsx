@@ -1,13 +1,13 @@
 import React from "react";
-import HighlightNewsModel from "src/shared/models/HighlightNews.model";
 
 import styles from "./HighlightNews.module.css";
 import TagPost from "src/components/atoms/Tag/TagNotice";
 import AuthorPost from "../AuthorPost/AuthorPost";
 import { Link } from "react-router-dom";
+import { NewsItem } from "src/shared/models/PrincipalsNotices.model";
 
 interface HighlightNewsProps {
-  content: HighlightNewsModel;
+  content: NewsItem;
 }
 
 const HighlightNews: React.FC<HighlightNewsProps> = ({ content }) => {

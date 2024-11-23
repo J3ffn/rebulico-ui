@@ -23,7 +23,7 @@
 }
 
 .latestNews_item_informations h2 {
-  font-size: 1.30rem;
+  font-size: 1.3rem;
 }
 
 .latestNews_item_informations h3 {
@@ -34,6 +34,7 @@
 
 .latestNews_item_image {
   grid-column: 2;
+  max-height: 198px;
 }
 
 .latestNews_item_image img {
@@ -46,8 +47,8 @@
 
 .latestNews_item:hover {
   transform: translateY(-5px);
-  transition: .5s;
-  
+  transition: 0.5s;
+
   & .latestNews_item_image img {
     box-shadow: 0px 3px 4px 00px rgba(0, 0, 0, 50%);
   }

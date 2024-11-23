@@ -10,13 +10,11 @@ const HomePage = () => {
 
   return (
     <div id="home" className={styles.home_container}>
-      <ContentBound>
         {context?.loading ? (
           <h2>Loading...</h2>
         ) : (
           <HomeContent />
         )}
-      </ContentBound>
     </div>
   );
 };

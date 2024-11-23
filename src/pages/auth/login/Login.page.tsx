@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./LoginPage.module.css";
 import LoginForm from "src/components/organisms/Auth/Login/LoginForm";
 
-import imageDetailLogin from "../../../assets/images/auth/TESTE.jpg";
+import imageDetailLogin from "../../../assets/images/auth/imagem-Professora.jpg";
 
 const LoginPage = () => {
   return (
@@ -12,8 +12,7 @@ const LoginPage = () => {
         <div className={styles.login_form_message}>
           <h1>Bem vindo(a) de volta! &#128075;</h1>
           <p>
-            Um novo dia está aqui. É o seu dia de moldar. Faça login e comece
-            seus projetos.
+            Um novo dia está aqui. É o seu dia de moldar!
           </p>
         </div>
         <LoginForm />

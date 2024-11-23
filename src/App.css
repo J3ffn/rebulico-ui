@@ -15,6 +15,18 @@ p {
   font-weight: 400;
 }
 
+a {
+  text-decoration: none;
+}
+
 .small-text {
   font-weight: 100;
+}
+
+.quote {
+  border-left: 4px solid #333;
+  padding-left: 10px;
+  margin: 1em 0;
+  color: #333;
+  font-style: italic;
 }

@@ -19,13 +19,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  word-spacing: 5px;
+  /* word-spacing: 5px; */
   /* height: 80%; */
 }
 
 .login_detail_page {
   display: flex;
-  height: 87vh;
+  height: 85vh;
   padding: 10px;
 }
 
@@ -34,5 +34,6 @@
   height: 100%;
   border-radius: 30px;
   object-fit: cover;
-  object-position: bottom right;
+  /* object-position: bottom right; */
+  object-position: center;
 }
