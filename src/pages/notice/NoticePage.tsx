@@ -17,7 +17,7 @@ const NoticePage = () => {
       const idNotice = param.id;
       if (!idNotice) return;
 
-      const data = await getNotice(idNotice);
+      const data: any = await getNotice(idNotice);
       setNotice(data);
     };
 

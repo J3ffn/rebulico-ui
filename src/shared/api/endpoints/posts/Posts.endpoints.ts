@@ -204,9 +204,9 @@ export const createPost = async (postData: object) => {
   return postData;
 };
 
-function buildReturn(data, error = null) {
-  return {
-    haveError: error && true,
-    data: data
-  }
-}
+// function buildReturn(data, error = null) {
+//   return {
+//     haveError: error && true,
+//     data: data
+//   }
+// }

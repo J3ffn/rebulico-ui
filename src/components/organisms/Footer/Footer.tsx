@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./Footer.module.css";
 
 import CCTAImage from "../../../assets/images/default/footer/logo_ccta.png";

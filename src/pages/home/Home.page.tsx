@@ -2,7 +2,6 @@ import React from "react";
 
 import styles from "./Home.module.css";
 import { PrincipalsNoticesContext } from "src/context/principalsNotices/PrincipalsNotices.context";
-import ContentBound from "src/components/molecules/ContentBound/ContentBound";
 import HomeContent from "src/components/organisms/HomeContent/HomeContent";
 
 const HomePage = () => {

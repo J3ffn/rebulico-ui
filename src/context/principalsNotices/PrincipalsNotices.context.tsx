@@ -26,7 +26,7 @@ export const PrincipalsNoticesStorage = ({ children }: any) => {
     }
 
     const fetchPrincipalsNotices = async () => {
-      const data = await getPrincipalsPosts();
+      const data: any = await getPrincipalsPosts();
       setPrincipalsNotices(data);
       localStorage.setItem("principalsNotices", JSON.stringify(data));
       setLoading(false);

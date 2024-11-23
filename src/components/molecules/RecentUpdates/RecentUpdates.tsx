@@ -11,7 +11,7 @@ interface RecentUpdatesProps {
 }
 
 const RecentUpdates: React.FC<RecentUpdatesProps> = ({ content }) => {
-  function getDiffHours(date: Date): number {
+  function getDiffHours(/* date: Date */): number {
     // Retorno temporário
     return Math.floor(Math.random() * 15) + 1;
   }
@@ -34,7 +34,7 @@ const RecentUpdates: React.FC<RecentUpdatesProps> = ({ content }) => {
             />
           </div>
           <div className={styles.recent_updates_item_informations}>
-            <TagPost tagColorDefault={false} tagText={item.tag} hours_ago={getDiffHours(item.published_at)}/>
+            <TagPost tagColorDefault={false} tagText={item.tag} hours_ago={getDiffHours(/*item.published_at */)}/>
             <h2>{item.title}</h2>
           </div>
         </Link>
