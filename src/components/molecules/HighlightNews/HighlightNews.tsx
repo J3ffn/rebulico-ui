@@ -12,13 +12,13 @@ interface HighlightNewsProps {
 
 const HighlightNews: React.FC<HighlightNewsProps> = ({ content }) => {
   return (
-    <Link to={`/noticia/${content.id}`} className={styles.HighlightNews_container}>
-      <AuthorPost
-        imageSrc={content.author.imageSrc}
-        name={content.author.name}
-      />
+    <Link
+      to={`/noticia/${content.id}`}
+      className={styles.HighlightNews_container}
+    >
       <h1>{content.title}</h1>
-      <TagPost tagText={content.tag} read_time={content.read_time} />
+      <TagPost tag={content.tag} categorie={content.categorie} />
+      <AuthorPost name={content.author.name} />
       <img src={content.media.url} alt={content.media.alt} />
     </Link>
   );

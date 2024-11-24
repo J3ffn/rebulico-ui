@@ -41,18 +41,14 @@ const LatestPosts: React.FC<LatestPostsProps> = ({ content }) => {
             </div>
             <AuthorPost
               name={item.author.name}
-              imageSrc={item.author.imageSrc}
-              imageSx={{
-                boxShadow: 'none',
-                border: '1px solid #9e9e9e',
-                height: '28px',
-                width: '28px'
-              }}
             />
             <div className={styles.latest_posts_item_informations}>
               <h2>{item.title}</h2>
               <h3>{item.initialText}</h3>
-              <TagPost tagText={item.tag} read_time={item.read_time} />
+              <TagPost
+                tag={item.tag}
+                categorie={item.categorie}
+              />
             </div>
           </Link>
         ))}

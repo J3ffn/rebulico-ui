@@ -1,91 +1,111 @@
-.latest_posts_container {
+.stories_container {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.latest_posts_informations {
+.stories_informations {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #ff0004;
 }
 
-.latest_posts_informations a {
+.stories_informations a {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
   color: #f6a917;
 }
 
-.latest_posts_informations a span {
+.stories_informations a span {
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
-.latest_posts_informations a:hover span {
+.stories_informations a:hover span {
   transform: translateX(-5px);
 }
 
-.latest_posts_informations a img {
+.stories_informations a img {
   margin-left: 5px;
 }
 
-.latest_posts_items_container {
+.stories_items_container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
 }
 
-.latest_posts_item {
+.stories_item {
   display: flex;
   width: 100%;
+  height: 100%;
   flex-direction: column;
   text-decoration: none;
   color: unset;
+  position: relative;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.latest_posts_item,
-.latest_posts_item_informations {
+.gradient_overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* Apenas 5% do espaço inferior */
+  background: linear-gradient(to top, #b6b6b6, transparent);
+  border-radius: 8px;
+}
+
+.stories_item,
+.stories_item_informations {
   gap: 10px;
 }
 
-.latest_posts_item_informations {
-  display: flex;
+.stories_item_informations {
+  /* display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-overflow: ellipsis;
-  height: 100%;
+  height: 100%; */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fdfdfd;
+  -webkit-text-stroke: 0.1px #000;
 }
 
-.latest_posts_item_informations h2 {
+.stories_item_informations h2 {
   font-size: 1.3rem;
 }
 
-.latest_posts_item_informations h3 {
+.stories_item_informations h3 {
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-secondary-2);
 }
 
-.latest_posts_item_image {
+.stories_item_image {
   /* height: 100%; */
 }
 
-.latest_posts_item_image img {
+.stories_item_image img {
   width: 100%;
-  height: 200px;
+  height: 320px;
   object-fit: cover;
   border-radius: 8px;
   /* box-shadow: 0px 3px 4px 00px rgba(0, 0, 0, 50%); */
 }
 
-.latest_posts_item:hover {
+.stories_item:hover {
   transform: translateY(-5px);
   transition: 0.5s;
 }
 
-.latest_posts_item:active {
+.stories_item:active {
   background-color: #fdfdfd;
   border-radius: 5px;
 }

@@ -17,9 +17,13 @@
 .recent_updates_section, .latest_posts_section {
   width: 100%;
   background-color: #FFF;
+  padding-top: 40px;
 }
 
 .latest_posts_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   /* background-color: black; */
 }
 

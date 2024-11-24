@@ -18,6 +18,7 @@ const Header: React.FC<HeaderProps> = ({
       id="header"
       className={styles.header}
       style={{ backgroundColor: `var(${colorVariable})` }}
+      // style={{ backgroundColor: `#fff` }}
     >
       <ContentBound>
         <div className={styles.headerContent} style={personStyles}>

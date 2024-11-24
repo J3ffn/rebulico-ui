@@ -1,11 +1,13 @@
 .notice_page_content_container {
   margin: 0 auto;
   max-width: 1000px;
+  text-align: justify;
 }
 
 .notice_page_content_container img {
   border-radius: 10px;
   width: 100%;
+  margin: .5em 0;
 }
 
 .notice_page_body_container {

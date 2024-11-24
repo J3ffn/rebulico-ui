@@ -23,7 +23,10 @@ const LatestNews: React.FC<LatestNewsProps> = ({ content }) => {
           <div className={styles.latestNews_item_informations}>
             <h2>{item.title}</h2>
             <h3>{item.initialText}</h3>
-            <TagPost tagText={item.tag} read_time={item.read_time} />
+            <TagPost
+              tag={item.tag}
+              categorie={item.categorie}
+            />
           </div>
           <div className={styles.latestNews_item_image}>
             <Img

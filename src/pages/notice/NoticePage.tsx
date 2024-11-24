@@ -38,11 +38,7 @@ const NoticePage = () => {
             <h1>{notice.title}</h1>
             <div dangerouslySetInnerHTML={{ __html: notice.content }} />
             <div className={styles.notice_page_author_container}>
-              <span style={{ color: "#727272", fontSize: "14px" }}>
-                Produzido por:
-              </span>
               <AuthorPost
-                imageSrc={notice.author.profile_image}
                 name={notice.author.name}
               />
             </div>

@@ -1,0 +1,15 @@
+.menu_subCategory {
+  /* background-color: aqua; */
+  margin-top: -10px;
+}
+
+.menu_subCategory a {
+  /* background-color: blue; */
+  margin-top: -5px;
+}
+
+.menu_subCategory a::before {
+  content: "∟";
+  font-size: 10px;
+  margin-right: 5px;
+}

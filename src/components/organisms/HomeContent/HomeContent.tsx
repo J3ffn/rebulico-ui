@@ -6,6 +6,7 @@ import { PrincipalsNoticesContext } from "src/context/principalsNotices/Principa
 import RecentUpdates from "src/components/molecules/RecentUpdates/RecentUpdates";
 import ContentBound from "src/components/molecules/ContentBound/ContentBound";
 import LatestPosts from "src/components/molecules/LatestPosts/LatestPosts";
+import Stories from "src/components/molecules/Stories/Stories";
 
 const HomeContent = () => {
   const context = React.useContext(PrincipalsNoticesContext);
@@ -30,10 +31,9 @@ const HomeContent = () => {
             </ContentBound>
           </section>
           <section className={styles.latest_posts_section}>
-            <ContentBound
-              classNamePersonalized={styles.latest_posts_container}
-            >
+            <ContentBound classNamePersonalized={styles.latest_posts_container}>
               <LatestPosts content={context.principalsNotices.latest_posts} />
+              <Stories content={context.principalsNotices.stories} />
             </ContentBound>
           </section>
         </main>

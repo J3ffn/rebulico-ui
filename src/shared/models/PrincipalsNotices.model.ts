@@ -18,8 +18,17 @@ export interface NewsItem {
   read_time: number;
   media: Media;
   published_at: Date;
-  tag: "Notícia" | "Esporte" | "Cultura" | "Política";
+  tag: {
+    text: string;
+    color: string;
+  };
+  categorie: string;
   summary?: string;
+}
+
+export interface StorieItem {
+  name: string;
+  imageSrc: string
 }
 
 export default interface PrincipalsNoticesModel {
@@ -27,4 +36,5 @@ export default interface PrincipalsNoticesModel {
   latest_news: NewsItem[];
   latest_posts: NewsItem[];
   recent_updates: NewsItem[];
+  stories: StorieItem[];
 }
