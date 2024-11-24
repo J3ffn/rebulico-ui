@@ -18,12 +18,12 @@ export const PrincipalsNoticesStorage = ({ children }: any) => {
   const [loading, setLoading] = LoadingState(true);
 
   React.useEffect(() => {
-    const valueOfLocalStorage = localStorage.getItem("principalsNotices");
-    if (valueOfLocalStorage) {
-      setPrincipalsNotices(JSON.parse(valueOfLocalStorage));
-      setLoading(false);
-      return;
-    }
+    // const valueOfLocalStorage = localStorage.getItem("principalsNotices");
+    // if (valueOfLocalStorage) {
+    //   setPrincipalsNotices(JSON.parse(valueOfLocalStorage));
+    //   setLoading(false);
+    //   return;
+    // }
 
     const fetchPrincipalsNotices = async () => {
       const data: any = await getPrincipalsPosts();
