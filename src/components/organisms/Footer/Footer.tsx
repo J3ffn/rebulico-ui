@@ -44,7 +44,7 @@ const Footer = () => {
             <div className={styles.developed_by}>
               <Link to={"https://github.com/J3ffn"}>
                 Developed by: <br />
-                Jefferson Iaaquiel
+                Jefferson Iazaquiel
               </Link>
             </div>
           </div>

@@ -21,8 +21,9 @@ export const getPrincipalsPosts = async () => {
 
   return {
     highlight: {
-      id: "63f2b1c2",
-      title: "A luta do MLB em João Pessoa está longe de seu fim",
+      id: "63f2b1c1",
+      title:
+        "Fazenda Mucatu: 50 anos da luta pela primeira reforma agrária da Paraíba",
       author: {
         id: "1234",
         name: "Aquila Silva",
@@ -32,7 +33,7 @@ export const getPrincipalsPosts = async () => {
       read_time: 6,
       media: {
         type: "image",
-        url: "https://i.ibb.co/4dPnVzp/ttpng.png",
+        url: "https://i.ibb.co/1sW91F7/Whats-App-Image-2024-11-25-at-22-34-51-a30085b8.jpg",
         alt: "Imagem descritiva",
       },
       published_at: "2024-10-21T12:00:00",
@@ -102,24 +103,27 @@ export const getPrincipalsPosts = async () => {
     ],
     recent_updates: [
       {
-        id: "63f2b1c7",
-        title: "Indignação contra o reitor cresce nos corredores do CCTA",
+        id: "63f2b1c2",
+        title: "A luta do MLB em João Pessoa está longe de seu fim",
         author: {
-          id: "7890",
-          name: "Autor Exemplo 3",
+          id: "1234",
+          name: "Aquila Silva",
+          imageSrc:
+            "https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png",
         },
-        read_time: 4,
+        read_time: 6,
         media: {
           type: "image",
-          url: "https://i.ibb.co/VTmMww9/as12.png",
-          alt: "Imagem ilustrativa",
+          url: "https://i.ibb.co/4dPnVzp/ttpng.png",
+          alt: "Imagem descritiva",
         },
-        published_at: "2024-10-21T08:30:00",
+        published_at: "2024-10-21T12:00:00",
         tag: {
           text: "RAPIDINHAS",
-          color: "#F6D517",
+          color: "#FF8000",
         },
         categorie: "Notícia",
+        summary: "Uma breve introdução ou resumo da notícia em destaque.",
       },
       {
         id: "63f2b1c8",

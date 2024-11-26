@@ -9,6 +9,7 @@ import { PrincipalsNoticesStorage } from "src/context/principalsNotices/Principa
 import Footer from "src/components/organisms/Footer/Footer";
 import { Divider } from "@mui/material";
 import HamburgerMenu from "src/components/organisms/HamburgerMenu/HamburgerMenu";
+import { Link } from "react-router-dom";
 
 interface PageTemplateProps {
   mainContent: React.ReactNode;
@@ -26,8 +27,10 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ mainContent }) => {
           colorVariable={"--color-neutral-light"}
           content={[
             /* <Menu /> */
-            <Logo />,
-            <LogoText iamgeSx={{ width: "166px", height: "45px" }} />,
+            <Link to={"/"} style={{display: "flex", gap: "15px"}}>
+              <Logo />
+              <LogoText iamgeSx={{ width: "166px", height: "45px" }} />
+            </Link>,
             <div style={{ display: "flex" }}>
               <Divider
                 sx={{
