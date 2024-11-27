@@ -17,7 +17,7 @@ const Stories: React.FC<StoriesProps> = ({ content }) => {
     <div className={styles.stories_container}>
       <div className={styles.stories_informations}>
         <h1>Rebuliço Stories</h1>
-        <Link to="categoria/ultimas-postagens" style={{ color: "#F6A917" }}>
+        <Link to="" style={{ color: "#F6A917" }}>
           <span>Ver mais</span> <img src={arrowRight} height={"12px"} />
         </Link>
       </div>

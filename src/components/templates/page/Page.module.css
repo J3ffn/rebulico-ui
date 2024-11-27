@@ -7,5 +7,18 @@
 
 .page_template_main_content {
   background-color: var(--color-neutral-light);
-  border-top: 3px solid #CDCDCD;
+  border-top: 3px solid #cdcdcd;
+}
+
+.secound_header_center_content {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  place-content: center
+}
+
+@media (max-width: 645px) {
+  .secound_header_divider {
+    display: none;
+  }
 }

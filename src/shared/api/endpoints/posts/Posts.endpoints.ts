@@ -2,6 +2,8 @@
 
 import { DefaultNotice, NoticesWithDetails } from "src/utiils/mocks/Notices";
 
+// import { DefaultNotice, NoticesWithDetails } from "src/utiils/mocks/Notices";
+
 // const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const getPrincipalsPosts = async () => {
@@ -21,19 +23,18 @@ export const getPrincipalsPosts = async () => {
 
   return {
     highlight: {
-      id: "63f2b1c1",
-      title:
-        "Fazenda Mucatu: 50 anos da luta pela primeira reforma agrária da Paraíba",
+      id: "63f2b1c0",
+      title: "Dom Quixote de la Alhandra e seus moinhos de vento",
       author: {
         id: "1234",
-        name: "Aquila Silva",
+        name: "Cleyton Ferreira",
         imageSrc:
           "https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png",
       },
       read_time: 6,
       media: {
         type: "image",
-        url: "https://i.ibb.co/1sW91F7/Whats-App-Image-2024-11-25-at-22-34-51-a30085b8.jpg",
+        url: "https://i.ibb.co/SBzvVbP/Whats-App-Image-2024-11-26-at-12-25-08-ca8eb226.jpg",
         alt: "Imagem descritiva",
       },
       published_at: "2024-10-21T12:00:00",
@@ -47,13 +48,13 @@ export const getPrincipalsPosts = async () => {
     latest_news: [
       {
         id: "63f2b1c3",
-        title: "Maternidade e universidade, uma rima que não deu certo",
+        title: "Maternidade e Universidade, uma rima que não deu certo",
         initialText:
           "Na universidade experimentamos o primeiro sopro de independência, um ...",
         read_time: 3,
         media: {
           type: "image",
-          url: "https://i.ibb.co/CvmHtzh/maternidade-e-universidade.jpg",
+          url: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/A411/production/_126210024_gettyimages-482136885.jpg.webp",
           alt: "Descrição da imagem",
         },
         published_at: "2024-10-20T14:00:00",
@@ -66,7 +67,7 @@ export const getPrincipalsPosts = async () => {
       {
         id: "63f2b1c4",
         title:
-          "Resistência e conquista: Os desafios dos povos indígenas na universidade",
+          "Resistência e conquista: os desafios dos povos indígenas na UFPB",
         initialText:
           "Na simbologia das formas, o círculo representa para muitos estudiosos ...",
         read_time: 5,
@@ -83,22 +84,30 @@ export const getPrincipalsPosts = async () => {
         categorie: "UFPB pelo avesso",
       },
       {
-        id: "63f2b1c5",
-        title: "O quanto você gasta para poder continuar a sonhar?",
+        id: "63f2b1c1",
+        title:
+          "Fazenda Mucatu: 50 anos da luta pela primeira reforma agrária da Paraíba",
         initialText:
-          "Imagine só, na sociedade em que vivemos, até a mais “Valente” das princesas ...",
-        read_time: 5,
+          "No próximo ano, completam-se 50 anos da desapropriação e reforma ...",
+        author: {
+          id: "1234",
+          name: "Aquila Silva",
+          imageSrc:
+            "https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png",
+        },
+        read_time: 6,
         media: {
           type: "image",
-          url: "https://i.ibb.co/yWFrk23/Oquanto-voc-gasta-para-poder-continuar-a-sonhar.png",
-          alt: "Descrição da imagem",
+          url: "https://i.ibb.co/1sW91F7/Whats-App-Image-2024-11-25-at-22-34-51-a30085b8.jpg",
+          alt: "Imagem descritiva",
         },
-        published_at: "2024-10-20T10:00:00",
+        published_at: "2024-10-21T12:00:00",
         tag: {
           text: "REPORTAGEM",
           color: "#FF8000",
         },
         categorie: "UFPB pelo avesso",
+        summary: "Uma breve introdução ou resumo da notícia em destaque.",
       },
     ],
     recent_updates: [
@@ -119,10 +128,9 @@ export const getPrincipalsPosts = async () => {
         },
         published_at: "2024-10-21T12:00:00",
         tag: {
-          text: "RAPIDINHAS",
+          text: "REPORTAGEM",
           color: "#FF8000",
         },
-        categorie: "Notícia",
         summary: "Uma breve introdução ou resumo da notícia em destaque.",
       },
       {
@@ -132,15 +140,15 @@ export const getPrincipalsPosts = async () => {
         read_time: 5,
         media: {
           type: "image",
-          url: "https://i.ibb.co/qNtDYGT/materia-maconha.jpg",
+          url: "https://i.ibb.co/JmzSnv0/Whats-App-Image-2024-11-26-at-12-52-25-a932931d.jpg",
           alt: "Imagem representativa",
         },
         published_at: "2024-10-21T09:00:00",
         tag: {
-          text: "Culturas midiáticas",
-          color: "#931981",
+          text: "REPORTAGEM",
+          color: "#FF8000",
         },
-        categorie: "Resenha crítica",
+        categorie: "UFPB pelo avesso",
       },
     ],
     latest_posts: [
@@ -149,7 +157,7 @@ export const getPrincipalsPosts = async () => {
         title: "Entre idas e vindas, um pêndulo de cristal que não brilha",
         author: {
           id: "4567",
-          name: "Aquila Silva",
+          name: "Maria Azevedo",
         },
         read_time: 3,
         media: {
@@ -161,20 +169,19 @@ export const getPrincipalsPosts = async () => {
         tag: "Notícia",
       },
       {
-        id: "63f2b1c6",
-        title:
-          "Marcha da Consciência Negra celebra avanços e critica a violência",
+        id: "63f2b1c5",
+        title: "O quanto você gasta para poder continuar a sonhar?",
         author: {
-          id: "5678",
-          name: "José Soares",
+          id: "4567",
+          name: "Henry Mychel",
         },
-        read_time: 3,
+        read_time: 5,
         media: {
           type: "image",
-          url: "https://opara.nyc3.cdn.digitaloceanspaces.com/ponte/uploads/2024/11/20234153/WhatsApp-Image-2024-11-20-at-16.46.04-852x500.webp",
+          url: "https://i.ibb.co/yWFrk23/Oquanto-voc-gasta-para-poder-continuar-a-sonhar.png",
           alt: "Descrição da imagem",
         },
-        published_at: "2024-10-20T17:00:00",
+        published_at: "2024-10-20T10:00:00",
         tag: "Notícia",
       },
     ],
@@ -188,7 +195,7 @@ export const getPrincipalsPosts = async () => {
         imageSrc: "https://i.ibb.co/4PsF2px/Garimpo.png",
       },
       {
-        name: "A luta do MLB em João Pessoa",
+        name: "Batalha da paz",
         imageSrc:
           "https://www.adorama.com/alc/wp-content/uploads/2024/08/dibakar-roy-9iFvm_KQTo4-unsplash-825x465.jpg",
       },
@@ -198,18 +205,19 @@ export const getPrincipalsPosts = async () => {
 
 export const getNotice = async (idPost: string) => {
   // try {
-  //   const response = await fetch(`${BASE_URL}/notice/${idPost}`)
+  //   const response = await fetch(`${BASE_URL}/notice/${idPost}`);
   //   if (!response.ok) {
   //     return {
-  //       error: response.body
-  //     }
+  //       error: response.body,
+  //     };
   //   }
   //   return response.json();
   // } catch (error: any) {
   //   return {
   //     error: error.message,
-  //   }
+  //   };
   // }
+
   const postFinded = NoticesWithDetails[idPost];
 
   if (!postFinded) {

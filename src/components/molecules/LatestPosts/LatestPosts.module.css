@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow: auto;
 }
 
 .latest_posts_informations {
@@ -19,6 +20,7 @@
 
 .latest_posts_informations a span {
   display: inline-block;
+  width: max-content;
   transition: transform 0.3s ease;
 }
 
@@ -35,6 +37,7 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  overflow: auto;
 }
 
 .latest_posts_item {
@@ -43,6 +46,7 @@
   flex-direction: column;
   text-decoration: none;
   color: unset;
+  min-width: 252px;
 }
 
 .latest_posts_item,

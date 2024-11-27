@@ -1,8 +1,16 @@
 .tagPost_container {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .tagText {
   /* color: #931981; */
+}
+
+@media (max-width: 520px) {
+  .tagPost_container {
+    font-size: 10px;
+  }
 }

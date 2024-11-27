@@ -8,12 +8,14 @@ interface TagPostProps {
   };
   categorie: string;
   haveTextBackground?: boolean;
+  stylesPersonalized?: React.CSSProperties
 }
 
 const TagPost: React.FC<TagPostProps> = ({
   tag,
   categorie,
   haveTextBackground,
+  stylesPersonalized
 }) => {
   const stylesIfWithBackground: React.CSSProperties = haveTextBackground
     ? {
@@ -24,7 +26,7 @@ const TagPost: React.FC<TagPostProps> = ({
     : {};
 
   return (
-    <div className={styles.tagPost_container + " tag_container"}>
+    <div className={styles.tagPost_container + " tag_container"} style={stylesPersonalized}>
       <span
         className={styles.tagText}
         style={{

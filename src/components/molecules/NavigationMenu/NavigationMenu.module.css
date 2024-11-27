@@ -44,7 +44,8 @@
 }
 
 .navigation_menu > ul > li > a {
-  font-size: 17px;
+  font-size: 15px;
+  text-transform: uppercase;
 }
 
 .navigation_menu a::after {

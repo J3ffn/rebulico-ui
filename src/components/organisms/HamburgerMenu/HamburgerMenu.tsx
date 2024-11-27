@@ -30,8 +30,11 @@ const HamburgerMenu: React.FC = () => {
       <HamburgerButton isOpen={isOpen} onClick={toggleMenu} />
       <NavigationMenu isOpen={isOpen}>
         <li>
-          <a style={{ color: "#FF0085" }}>Projeto</a>
+          <a style={{ color: "#FF0085" }}>Rebuliço</a>
           <ul className={styles.menu_subCategory}>
+            <li>
+              <a>Projeto</a>
+            </li>
             <li>
               <a>Quem somos</a>
             </li>
@@ -52,9 +55,6 @@ const HamburgerMenu: React.FC = () => {
           </ul>
         </li>
         <li>
-          <a style={{ color: "#F6D517" }}>Rapidinhas</a>
-        </li>
-        <li>
           <a style={{ color: "#931981" }}>Culturas midiáticas</a>
           <ul className={styles.menu_subCategory}>
             <li>
@@ -72,7 +72,7 @@ const HamburgerMenu: React.FC = () => {
           <a style={{ color: "#76FAFF" }}>Publicação</a>
         </li>
         <li>
-          <a style={{ color: "#76FAFF" }}>Entrevistas</a>
+          <a style={{ color: "#FF6200" }}>Entrevistas</a>
         </li>
       </NavigationMenu>
     </div>

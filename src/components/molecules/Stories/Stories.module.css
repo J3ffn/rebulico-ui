@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow: auto;
 }
 
 .stories_informations {
@@ -20,6 +21,7 @@
 
 .stories_informations a span {
   display: inline-block;
+  width: max-content;
   transition: transform 0.3s ease;
 }
 
@@ -36,12 +38,14 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  overflow: auto;
 }
 
 .stories_item {
   display: flex;
   width: 100%;
   height: 100%;
+  min-width: 201px;
   flex-direction: column;
   text-decoration: none;
   color: unset;

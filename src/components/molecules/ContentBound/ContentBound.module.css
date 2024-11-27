@@ -3,3 +3,10 @@
   padding: 16px 24px;
   max-width: 1380px;
 }
+
+@media (max-width: 400px) {
+  .leyout_template_container {
+    
+  padding: 16px 14px;
+  }
+}

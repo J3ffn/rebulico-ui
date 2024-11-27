@@ -26,8 +26,12 @@ const Footer = () => {
             <div className={styles.footer_center_information_container}>
               <img src={siteLogo} alt="" width={"60px"} />
               <div className={styles.footer_social_midia}>
-                <img src={instagramImage} alt="" width={"50px"} />
-                <img src={EmailImage} alt="" width={"50px"} />
+                <Link to="https://www.instagram.com/rebulicoufpb/" target="_blank">
+                  <img src={instagramImage} alt="" width={"50px"} />
+                </Link>
+                <Link type="email" to="mailto:rebulicou@gmail.com">
+                  <img src={EmailImage} alt="" width={"50px"} />
+                </Link>
               </div>
             </div>
             <div className={styles.footer_right_container}>
@@ -42,9 +46,13 @@ const Footer = () => {
               © Todos os direitos reservados
             </span>
             <div className={styles.developed_by}>
-              <Link to={"https://github.com/J3ffn"}>
+              <Link to={"https://linkedin.com/in/jefferson-izaquiel"}>
                 Developed by: <br />
-                Jefferson Iazaquiel
+                <span
+                  style={{ width: "max-content", textDecoration: "underline" }}
+                >
+                  Jefferson Iazaquiel
+                </span>
               </Link>
             </div>
           </div>

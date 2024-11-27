@@ -24,17 +24,20 @@
 
 .latestNews_item_informations h2 {
   font-size: 1.3rem;
+  font-size: clamp(0.4rem, 0.3043rem + 3.4783vw, 1.2rem);
 }
 
 .latestNews_item_informations h3 {
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-secondary-2);
+  font-size: clamp(.2rem, 0.3043rem + 3.4783vw, .9rem);
 }
 
 .latestNews_item_image {
   grid-column: 2;
   max-height: 198px;
+  min-height: 198px;
 }
 
 .latestNews_item_image img {

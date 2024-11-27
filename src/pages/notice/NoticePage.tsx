@@ -40,6 +40,7 @@ const NoticePage = () => {
             <div className={styles.notice_page_author_container}>
               <AuthorPost
                 name={notice.author.name}
+                isNoticePage={true}
               />
             </div>
           </div>

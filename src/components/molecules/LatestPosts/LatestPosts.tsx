@@ -19,7 +19,7 @@ const LatestPosts: React.FC<LatestPostsProps> = ({ content }) => {
     <div className={styles.latest_posts_container}>
       <div className={styles.latest_posts_informations}>
         <h1>Últimas postagens</h1>
-        <Link to="categoria/ultimas-postagens" style={{ color: "#F6A917" }}>
+        <Link to="" style={{ color: "#F6A917" }}>
           <span>Ver mais</span> <img src={arrowRight} height={"12px"} />
         </Link>
       </div>

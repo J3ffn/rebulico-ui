@@ -27,27 +27,30 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ mainContent }) => {
           colorVariable={"--color-neutral-light"}
           content={[
             /* <Menu /> */
-            <Link to={"/"} style={{display: "flex", gap: "15px"}}>
-              <Logo />
-              <LogoText iamgeSx={{ width: "166px", height: "45px" }} />
-            </Link>,
-            <div style={{ display: "flex" }}>
-              <Divider
-                sx={{
-                  height: "30px",
-                  marginRight: "10px",
-                  borderWidth: 1.5,
-                  placeSelf: "center",
-                }}
-                orientation="vertical"
-                flexItem
-              />
-              <h3>
-                Projeto de pesquisa, ensino e extensão <br />
-                <span style={{ display: "flex", placeContent: "center" }}>
-                  Probex UFPB
-                </span>
-              </h3>
+            <div className={styles.secound_header_center_content}>
+              <Link to={"/"} style={{ display: "flex", gap: "15px" }}>
+                <Logo />
+                <LogoText iamgeSx={{ width: "166px", height: "45px" }} />
+              </Link>
+              <div style={{ display: "flex" }}>
+                <Divider
+                  sx={{
+                    height: "30px",
+                    marginRight: "10px",
+                    borderWidth: 1.5,
+                    placeSelf: "center",
+                  }}
+                  className={styles.secound_header_divider}
+                  orientation="vertical"
+                  flexItem
+                />
+                <h3>
+                  Projeto de pesquisa, ensino e extensão <br />
+                  <span style={{ display: "flex", placeContent: "center" }}>
+                    Probex UFPB
+                  </span>
+                </h3>
+              </div>
             </div>,
             /* <Finder /> */
           ]}

@@ -7,9 +7,10 @@
 }
 
 .recent_updates_item {
-  position: relative;
+  min-height: 300px;
   max-height: 350px;
   text-decoration: none;
+  position: relative;
 }
 
 .recent_updates_item_image_container {
@@ -22,7 +23,7 @@
 }
 
 .recent_updates_item_image_container::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -37,21 +38,18 @@
 } */
 
 .recent_updates_item_informations {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: absolute;
   color: #fff;
-}
-
-.recent_updates_item_informations {
-  position: relative;
-  top: -105px;
-  padding: 0 30px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border: 0;
+  margin: 0;
+  padding: 30px 20px 20px;
 }
 
 .recent_updates_item_informations h2 {
-  font-size: 1.30rem;
+  font-size: 1.3rem;
 }
 
 .recent_updates_item_informations h3 {
@@ -73,8 +71,8 @@
 
 .recent_updates_item:hover {
   transform: translateY(-5px);
-  transition: .5s;
-  
+  transition: 0.5s;
+
   & .recent_updates_item_image img {
     box-shadow: 0px 3px 4px 00px rgba(0, 0, 0, 50%);
   }
@@ -83,4 +81,19 @@
 .recent_updates_item:active {
   background-color: #fdfdfd;
   border-radius: 5px;
+}
+
+@media (max-width: 1285px) {
+  .recent_updates_container {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 990px) {
+  .recent_updates_container {
+    grid-template-columns: 1fr;
+    & span {
+      font-size: .8rem;
+    }
+  }
 }
