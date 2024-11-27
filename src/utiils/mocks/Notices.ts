@@ -229,7 +229,7 @@ export const NoticesWithDetails: Record<string, Notice> = {
       "Fazenda Mucatu: 50 anos da luta pela primeira reforma agrária da Paraíba",
     author: {
       id: "653b70c8e45d999ebe92a104",
-      name: "Áquila Silva",
+      name: "Raylson Santos",
       profile_image:
         "https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png",
     },
@@ -275,7 +275,7 @@ export const NoticesWithDetails: Record<string, Notice> = {
     title: "Maternidade e universidade, uma rima que não deu certo",
     author: {
       id: "653b70c8e45d999ebe92a104",
-      name: "Áquila Silva",
+      name: "Beatriz Barros",
       profile_image:
         "https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png",
     },
@@ -299,7 +299,7 @@ export const NoticesWithDetails: Record<string, Notice> = {
       "Resistência e conquista: Os desafios dos povos indígenas na universidade",
     author: {
       id: "653b70c8e45d999ebe92a104",
-      name: "Áquila Silva",
+      name: "Domingos Melo",
       profile_image:
         "https://i.postimg.cc/V6kZDcFk/Screenshot-2024-10-27-123629.png",
     },
