@@ -41,6 +41,10 @@ import {
   TableImproved,
 } from "mui-tiptap";
 import { mentionSuggestionOptions } from "../../components/organisms/MentionSuggestion/MentionSuggestionOptions";
+import {
+  CustomParagraph,
+  CustomDivWrapperExtension,
+} from "src/utiils/extension/TipTapExtension";
 
 export type UseExtensionsOptions = {
   placeholder?: string;
@@ -138,6 +142,8 @@ export default function useExtensions({
       // Usamos a extensão regular `History` (desfazer/refazer) quando não usamos
       // edição colaborativa
       History,
+      CustomParagraph,
+      // CustomDivWrapperExtension,
     ];
   }, [placeholder]);
 }

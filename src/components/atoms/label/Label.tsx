@@ -7,14 +7,22 @@ type LabelProps = {
   htmlFor?: string;
   children: React.ReactNode;
   required?: boolean;
+  sxLabel?: React.CSSProperties;
 };
 
-const Label: React.FC<LabelProps> = ({ text, htmlFor, children, required }) => {
+const Label: React.FC<LabelProps> = ({
+  text,
+  htmlFor,
+  children,
+  required,
+  sxLabel,
+}) => {
   return (
-    <label htmlFor={htmlFor} className={styles.label_container}>
+    <label htmlFor={htmlFor} className={styles.label_container} style={sxLabel}>
       <div className={styles.label_text_container}>
         {text}
-        {required && <span style={{ color: "red", marginLeft: '2px' }}>*</span>}:
+        {required && <span style={{ color: "red", marginLeft: "2px" }}>*</span>}
+        {text && ":"}
       </div>
       {children}
     </label>

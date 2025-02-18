@@ -12,7 +12,9 @@ const CreatePostPage: React.FC = () => {
       <ContentBound>
         <CreateNoticeStorage>
           <h1 className={styles.page_title}>Criação de post:</h1>
-          <ContentBound personalPadding="40px 90px 0px 90px">
+          <ContentBound
+          // personalPadding="40px 90px 0px 90px"
+          >
             <PostInformationDefine />
             <ContentEditor />
           </ContentBound>

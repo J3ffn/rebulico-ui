@@ -54,13 +54,31 @@
 
 .postInformation__form_secondLine_author {
   display: flex;
-  flex-direction: column;
+  gap: 35px;
+}
+
+.post_content_adicionar_autores_container {
+  display: flex;
+}
+
+.post_content_autores_container {
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
 }
 
+.post_content_add_button_container {
+  margin: auto auto;
+}
 /* .post_config_container {} */
 
 /* .post_content_edit_container {} */
+
+@media (max-width: 751px) {
+  .postInformation__form_line {
+    flex-wrap: wrap;
+  }
+}
 
 @media (max-width: 725px) {
   .postInformation_form_container {

@@ -1,5 +1,6 @@
 import { useTheme } from "@mui/material";
 import {
+  MenuButton,
   MenuButtonAddTable,
   MenuButtonBlockquote,
   MenuButtonBold,
@@ -31,9 +32,15 @@ import {
   MenuSelectTextAlign,
   isTouchDevice,
 } from "mui-tiptap";
+import { FormatIndentIncrease } from "@mui/icons-material";
 
-export default function ControlesMenuEditor() {
+export default function EditorMenuControls({
+  handleNewImageFiles,
+}: {
+  handleNewImageFiles: any;
+}) {
   const tema = useTheme();
+
   return (
     <MenuControlsContainer>
       <MenuSelectFontFamily
@@ -123,14 +130,7 @@ export default function ControlesMenuEditor() {
 
       <MenuDivider />
 
-      <MenuButtonImageUpload
-        onUploadFiles={(files) =>
-          files.map((file) => ({
-            src: URL.createObjectURL(file),
-            alt: file.name,
-          }))
-        }
-      />
+      <MenuButtonImageUpload onUploadFiles={handleNewImageFiles} />
 
       <MenuDivider />
 

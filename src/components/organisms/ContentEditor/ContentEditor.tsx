@@ -43,15 +43,29 @@ export default function ContentEditor() {
         return;
       }
 
-      const attributesForImageFiles = files.map((file) => ({
-        src: URL.createObjectURL(file),
-        alt: file.name,
-      }));
+      const convertToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = (error) => reject(error);
+          reader.readAsDataURL(file);
+        });
+      };
 
-      insertImages({
-        images: attributesForImageFiles,
-        editor: rteRef.current.editor,
-        position: insertPosition,
+      // Processar arquivos e gerar atributos
+      Promise.all(
+        files.map(async (file) => ({
+          src: await convertToBase64(file),
+          alt: file.name,
+        }))
+      ).then((attributesForImageFiles) => {
+        console.log("Atributos com base64:", attributesForImageFiles);
+
+        insertImages({
+          images: attributesForImageFiles,
+          editor: rteRef.current.editor,
+          position: insertPosition,
+        });
       });
     },
     []
@@ -118,7 +132,7 @@ export default function ContentEditor() {
           imageSrc: documentIcon,
           ariaLabel: "Icone do conteúdo da postagem",
         }}
-        text="Conteúdo da postagem:"
+    text="Conteúdo da postagem:"
       />
 
       <Box
@@ -136,16 +150,21 @@ export default function ContentEditor() {
           onUpdate={(e) => changeContent(e.editor?.getHTML() ?? "")}
           editable={isEditable}
           editorProps={{
-            handleDrop: handleDrop,
-            handlePaste: handlePaste,
+            handleDrop,
+            handlePaste,
           }}
-          renderControls={() => <EditorMenuControls />}
+          renderControls={() => (
+            <EditorMenuControls handleNewImageFiles={handleNewImageFiles} />
+          )}
           RichTextFieldProps={{
             className: styles.content_editor_container,
             // A variante "outlined" é a padrão (mostrada aqui apenas como
             // exemplo), mas pode ser alterada para "standard" para remover a borda
             // do campo do editor
             variant: "standard",
+            RichTextContentProps: {
+              className: styles.teste,
+            },
             MenuBarProps: {
               hide: !showMenuBar,
             },
