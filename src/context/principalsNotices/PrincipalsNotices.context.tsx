@@ -1,6 +1,6 @@
 import React from "react";
 import LoadingState from "src/hooks/loading/Loading.hook";
-import { getPrincipalsPosts } from "src/shared/api";
+import { findPrincipalsPosts } from "src/shared/api";
 import PrincipalsNoticesModel from "src/shared/models/PrincipalsNotices.model";
 
 interface PrincipalsNoticesContextType {
@@ -17,6 +17,13 @@ export const PrincipalsNoticesStorage = ({ children }: any) => {
     React.useState<PrincipalsNoticesModel>();
   const [loading, setLoading] = LoadingState(true);
 
+  const fetchPrincipalsNotices = React.useCallback(async () => {
+    const data: any = await findPrincipalsPosts();
+    setPrincipalsNotices(data);
+    localStorage.setItem("principalsNotices", JSON.stringify(data));
+    setLoading(false);
+  }, []);
+
   React.useEffect(() => {
     const valueOfLocalStorage = localStorage.getItem("principalsNotices");
     if (valueOfLocalStorage) {
@@ -24,13 +31,6 @@ export const PrincipalsNoticesStorage = ({ children }: any) => {
       setLoading(false);
       return;
     }
-
-    const fetchPrincipalsNotices = async () => {
-      const data: any = await getPrincipalsPosts();
-      setPrincipalsNotices(data);
-      localStorage.setItem("principalsNotices", JSON.stringify(data));
-      setLoading(false);
-    };
 
     fetchPrincipalsNotices();
   }, []);

@@ -20,7 +20,7 @@ type Notice = {
   };
 };
 
-export const principalsPosts = {
+export const principalsPostsMock = {
   highlight: {
     id: "63f2b1c0",
     title: "Dom Quixote de la Alhandra e seus moinhos de vento",
@@ -200,7 +200,7 @@ export const principalsPosts = {
   ],
 };
 
-export const Notices = {
+export const NoticesMock = {
   highlight: {
     id: "63f2b1c0",
     title: "Dom Quixote de la Alhandra e seus moinhos de vento",
@@ -380,7 +380,7 @@ export const Notices = {
   ],
 };
 
-export const NoticesWithDetails: Record<string, Notice> = {
+export const NoticesWithDetailsMock: Record<string, Notice> = {
   "63f2b1c0": {
     title: "Dom Quixote de la Alhandra e seus moinhos de vento",
     author: {
@@ -570,7 +570,7 @@ export const NoticesWithDetails: Record<string, Notice> = {
   },
 };
 
-export const DefaultNotice = {
+export const DefaultNoticeMock = {
   title: "A luta do MLB em João Pessoa está longe de seu fim",
   author: {
     id: "653b70c8e45d999ebe92a104",
@@ -593,3 +593,39 @@ export const DefaultNotice = {
     slug: "noticia",
   },
 };
+
+export const TagsMock = [
+  {
+    _id: "67182aedf469549e4af02e89",
+    name: "Stories",
+    slug: "stories",
+    description: "Histórias curtas e visuais, geralmente mais interativas.",
+    created_at: "2024-10-20T14:50:31.902Z",
+    updated_at: "2024-10-20T14:50:31.902Z",
+  },
+  {
+    _id: "67182af1f469549e4af02e8b",
+    name: "Artigo",
+    slug: "artigo",
+    description: "Conteúdo opinativo ou com análise mais profunda.",
+    created_at: "2024-10-20T14:50:31.902Z",
+    updated_at: "2024-10-20T14:50:31.902Z",
+  },
+  {
+    _id: "67182af6f469549e4af02e8d",
+    name: "Notícia",
+    slug: "noticia",
+    description: "Informações rápidas e atualizações imediatas.",
+    created_at: "2024-10-20T14:50:31.902Z",
+    updated_at: "2024-10-20T14:50:31.902Z",
+  },
+  {
+    _id: "67182afef469549e4af02e8f",
+    name: "Política",
+    slug: "politica",
+    description:
+      "Notícias e atualizações sobre política nacional e internacional.",
+    created_at: "2024-10-20T14:47:59.824Z",
+    updated_at: "2024-10-20T14:47:59.824Z",
+  },
+];

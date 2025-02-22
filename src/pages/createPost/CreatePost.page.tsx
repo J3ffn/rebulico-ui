@@ -2,9 +2,8 @@ import React from "react";
 import ContentBound from "src/components/molecules/ContentBound/ContentBound";
 
 import styles from "./CreatePost.module.css";
-import ContentEditor from "src/components/organisms/ContentEditor/ContentEditor";
 import { CreateNoticeStorage } from "src/context/createNotice/CreateNotice.context";
-import PostInformationDefine from "src/components/molecules/PostInformationDefine/PostInformationDefine";
+import CreatePostContent from "src/components/organisms/CreatePage/CreatePostContent";
 
 const CreatePostPage: React.FC = () => {
   return (
@@ -15,8 +14,7 @@ const CreatePostPage: React.FC = () => {
           <ContentBound
           // personalPadding="40px 90px 0px 90px"
           >
-            <PostInformationDefine />
-            <ContentEditor />
+            <CreatePostContent />
           </ContentBound>
         </CreateNoticeStorage>
       </ContentBound>

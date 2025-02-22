@@ -11,17 +11,30 @@ import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
 import Label from "src/components/atoms/label/Label";
 import { Button, Chip, IconButton } from "@mui/material";
 import { Add, Check } from "@mui/icons-material";
-// import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
+import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
+import { convertFileToBase64 } from "src/utiils/converters/Base64";
+import { findAllTags } from "src/shared/api/endpoints/tags/Tags.endpoints";
+import { CreateNoticeContextType } from "src/context/createNotice/CreateNotice.context";
 
 type ChipData = {
-  label: string;
+  name: string;
   isEditing: boolean;
 };
 
+type TagsSelectionData = {
+  id: string;
+  name: string;
+  slug: string;
+};
+
 const PostInformationDefine = () => {
+  const { notice, setNoticeField } = useCreateNotice();
   const [chipList, setChipList] = React.useState<ChipData[]>([]);
   const [chipAddStage, setChipAddStage] = React.useState(false);
   const [chipAddInput, setChipAddInput] = React.useState("");
+  const [tagsSelection, setTagsSelection] = React.useState<TagsSelectionData[]>(
+    []
+  );
 
   // const { setNoticeField } = useCreateNotice();
 
@@ -29,16 +42,36 @@ const PostInformationDefine = () => {
   //   setNoticeField(field, value)
   // }
 
-  const handleImageChange = (file: File | null) => {
+  const fetchTags = React.useCallback(async () => {
+    const data = await findAllTags();
+    setTagsSelection(data);
+  }, []);
+
+  React.useEffect(() => {
+    fetchTags();
+  }, []);
+
+  React.useEffect(() => {
+    const mapped = chipList.map((item) => {
+      return { name: item.name };
+    });
+    setNoticeField("collaborators", mapped);
+  }, [chipList]);
+
+  const handleImageChange = async (file: File | null) => {
     if (file) {
       console.log("Imagem selecionada:", file);
+      setNoticeField("bannerImage", await convertFileToBase64(file));
     }
   };
 
   const handleAddChip = () => {
-    setChipList([...chipList, { label: "", isEditing: true }]);
+    setChipList([...chipList, { name: "", isEditing: true }]);
     setChipAddStage(false);
-    console.log("ADICIONOU");
+    const mapped = chipList.map((item) => {
+      return { name: item.name };
+    });
+    setNoticeField("collaborators", mapped);
   };
 
   const handleConfirmEdit = (index: number, newLabel: string) => {
@@ -46,7 +79,7 @@ const PostInformationDefine = () => {
 
     const updatedChips = chipList.map((chip, idx) =>
       idx === index
-        ? { ...chip, label: newLabel.trim(), isEditing: false }
+        ? { ...chip, name: newLabel.trim(), isEditing: false }
         : chip
     );
     setChipList(updatedChips);
@@ -63,6 +96,11 @@ const PostInformationDefine = () => {
     console.log("ACHADO");
     console.log(updatedChips);
     setChipList(updatedChips);
+  };
+
+  const changeOption = (type: "tag" | "project", value: any) => {
+    console.log("first");
+    setNoticeField(type, value);
   };
 
   return (
@@ -91,6 +129,10 @@ const PostInformationDefine = () => {
             <Input
               id="title"
               placeholder="Ex: Sorteio de carro se mostra ser golpe..."
+              props={{
+                onChange: (event) =>
+                  setNoticeField("title", event.target.value),
+              }}
             />
           </Label>
 
@@ -108,16 +150,36 @@ const PostInformationDefine = () => {
           <div className={styles.postInformation__form_secondLine_author}>
             <Select
               label="Projeto"
-              placeholder="Selecione seu Projeto"
+              placeholder="Selecione o Projeto"
               options={[
-                { name: "Noticia" },
-                { name: "Documentário" },
-                { name: "Resenha" },
-              ]}
-              attributes={{
-                onChange: ({ target }) => {
-                  console.log(target.value);
+                // TRAZER DO BACK AS TAGS PARA MOSTRAGEM
+                {
+                  name: "Noticia",
+                  id: "1",
                 },
+                {
+                  name: "Reportagem",
+                  id: "2",
+                },
+                {
+                  name: "Resenha",
+                  id: "3",
+                },
+              ]}
+              onChangeOption={(option) => changeOption("project", option)}
+              attributes={{
+                required: true,
+              }}
+            />
+            <Select
+              label="Tag"
+              placeholder="Selecione a Tag"
+              options={tagsSelection}
+              onChangeOption={(option) => {
+                changeOption("tag", option);
+              }}
+              attributes={{
+                required: true,
               }}
             />
             <div className={styles.post_content_adicionar_autores_container}>
@@ -142,18 +204,18 @@ const PostInformationDefine = () => {
                                 sx={{
                                   maxWidth: "140px",
                                 }}
-                                value={chip.label}
+                                value={chip.name}
                                 inputProps={{
                                   onChange: (event: any) => {
                                     console.log("MUDOU");
                                     const updatedChips = [...chipList];
-                                    updatedChips[index].label =
+                                    updatedChips[index].name =
                                       event.target.value;
                                     setChipList(updatedChips);
                                   },
                                   onKeyPress: (event) => {
                                     if (event.key === "Enter") {
-                                      handleConfirmEdit(index, chip.label);
+                                      handleConfirmEdit(index, chip.name);
                                     }
                                   },
                                 }}
@@ -161,7 +223,7 @@ const PostInformationDefine = () => {
                               />
                               <IconButton
                                 onClick={() =>
-                                  handleConfirmEdit(index, chip.label)
+                                  handleConfirmEdit(index, chip.name)
                                 }
                                 size="small"
                                 sx={{ marginLeft: "5px" }}
@@ -179,7 +241,7 @@ const PostInformationDefine = () => {
                       ) : (
                         <Chip
                           key={index}
-                          label={chip.label}
+                          label={chip.name}
                           onDelete={() => chipOnDelete(index)}
                           sx={{ margin: "5px" }}
                         />

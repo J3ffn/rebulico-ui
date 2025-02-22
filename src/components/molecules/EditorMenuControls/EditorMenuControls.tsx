@@ -32,7 +32,7 @@ import {
   MenuSelectTextAlign,
   isTouchDevice,
 } from "mui-tiptap";
-import { FormatIndentIncrease } from "@mui/icons-material";
+import styles from "./EditorMenuControls.module.css";
 
 export default function EditorMenuControls({
   handleNewImageFiles,
@@ -42,7 +42,7 @@ export default function EditorMenuControls({
   const tema = useTheme();
 
   return (
-    <MenuControlsContainer>
+    <MenuControlsContainer className={styles.menu_controls_container}>
       <MenuSelectFontFamily
         options={[
           { label: "Comic Sans", value: "Comic Sans MS, Comic Sans" },

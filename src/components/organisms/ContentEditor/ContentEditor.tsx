@@ -18,6 +18,7 @@ import documentIcon from "../../../assets/images/createPost/document.svg";
 
 import styles from "./ContentEditor.module.css";
 import IconText from "src/components/molecules/IconText/IconText";
+import { convertFileToBase64 } from "src/utiils/converters/Base64";
 
 function fileListToImageFiles(fileList: FileList): File[] {
   return Array.from(fileList).filter((file) => {
@@ -41,21 +42,12 @@ export default function ContentEditor() {
     (files: File[], insertPosition?: number): void => {
       if (!rteRef.current?.editor) {
         return;
-      }
-
-      const convertToBase64 = (file: File): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.onerror = (error) => reject(error);
-          reader.readAsDataURL(file);
-        });
-      };
-
+      }      
+      
       // Processar arquivos e gerar atributos
       Promise.all(
         files.map(async (file) => ({
-          src: await convertToBase64(file),
+          src: await convertFileToBase64(file),
           alt: file.name,
         }))
       ).then((attributesForImageFiles) => {

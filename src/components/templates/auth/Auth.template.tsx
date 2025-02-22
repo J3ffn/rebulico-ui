@@ -16,7 +16,7 @@ const AuthTemplate: React.FC<PageTemplateProps> = ({ mainContent }) => {
         content={[, /* <Menu /> */ <LogoText /> /* <Finder /> */]}
         personStyles={{
           backgroundColor: "var(--color-neutral-light)",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       />
       <div id="main_content" className={styles.page_template_main_content}>

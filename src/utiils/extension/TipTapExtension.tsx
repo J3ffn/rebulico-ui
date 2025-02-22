@@ -17,17 +17,17 @@ const CustomParagraph = Node.create({
     return ["p", {}, 0];
   },
 
-  addKeyboardShortcuts() {
-    return {
-      Enter: ({ editor }) => {
-        console.log(editor.$doc.content);
+  // addKeyboardShortcuts() {
+  //   return {
+  //     Enter: ({ editor }) => {
+  //       console.log(editor.$doc.content);
 
-        editor.commands.insertContent("<p><br>");
-        // editor.commands.insertContent("<br>");
-        return true;
-      },
-    };
-  },
+  //       editor.commands.insertContent("<p><br>");
+  //       // editor.commands.insertContent("<br>");
+  //       return true;
+  //     },
+  //   };
+  // },
 });
 
 // const TabExtension = Extension.create({
