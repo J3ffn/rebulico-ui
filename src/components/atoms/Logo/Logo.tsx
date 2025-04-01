@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./Logo.module.css";
 import siteLogo from "src/assets/images/default/SiteLogo.svg";
 
 const Logo: React.FC = () => {
   return (
-    <Link to="/" className={styles.logo}>
+    <div className={styles.logo}>
       <img src={siteLogo} alt="Logo do site" />
-    </Link>
+    </div>
   );
 };
 

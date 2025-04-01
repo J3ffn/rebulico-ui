@@ -183,7 +183,7 @@ const PostInformationDefine = () => {
               }}
             />
             <div className={styles.post_content_adicionar_autores_container}>
-              <Label text="Autores">
+              <Label text="Colaboradores">
                 <div style={{ display: "flex", height: "100%" }}>
                   <div className={styles.post_content_autores_container}>
                     {/* Melhorar o botão visualmente */}
