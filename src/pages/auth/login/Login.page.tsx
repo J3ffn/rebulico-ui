@@ -10,9 +10,7 @@ const LoginPage = () => {
         {/* &#128075; => 👋 */}
         <div className={styles.login_form_message}>
           <h1>Bem vindo(a) de volta! &#128075;</h1>
-          <p>
-            Um novo dia está aqui. É o seu dia de moldar!
-          </p>
+          <p>Um novo dia está aqui. É o seu dia de moldar!</p>
         </div>
         <LoginForm />
       </div>

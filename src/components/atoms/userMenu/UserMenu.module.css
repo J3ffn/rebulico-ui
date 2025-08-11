@@ -1,0 +1,18 @@
+.userMenuContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.userImage {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.userImage {
+  object-fit: fill;
+}

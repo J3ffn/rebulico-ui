@@ -3,6 +3,7 @@ import HamburgerButton from "../../atoms/HamburgerButton/HamburgerButton";
 import NavigationMenu from "../../molecules/NavigationMenu/NavigationMenu";
 
 import styles from "./HamburgerMenu.module.css";
+import { Link } from "react-router-dom";
 
 const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,13 +34,13 @@ const HamburgerMenu: React.FC = () => {
           <a style={{ color: "#FF0085" }}>Rebuliço</a>
           <ul className={styles.menu_subCategory}>
             <li>
-              <a>Projeto</a>
+              <Link to={"/"}>Projeto</Link>
             </li>
             <li>
-              <a>Quem somos</a>
+              <Link to={"/"}>Quem somos</Link>
             </li>
             <li>
-              <a>Manifesto</a>
+              <Link to={"/"}>Manifesto</Link>
             </li>
           </ul>
         </li>
@@ -47,10 +48,10 @@ const HamburgerMenu: React.FC = () => {
           <a style={{ color: "#FF8000" }}>(Grandes) reportagens</a>
           <ul className={styles.menu_subCategory}>
             <li>
-              <a>UFPB pelo avesso</a>
+              <Link to={"/"}>UFPB pelo avesso</Link>
             </li>
             <li>
-              <a>Se essa rua fosse minha</a>
+              <Link to={"/"}>Se essa rua fosse minha</Link>
             </li>
           </ul>
         </li>
@@ -58,21 +59,29 @@ const HamburgerMenu: React.FC = () => {
           <a style={{ color: "#931981" }}>Culturas midiáticas</a>
           <ul className={styles.menu_subCategory}>
             <li>
-              <a>Resenhas críticas</a>
+              <Link to={"/"}>Resenhas críticas</Link>
             </li>
           </ul>
         </li>
         <li>
-          <a style={{ color: "#FF0004" }}>Rebuliço Stories</a>
+          <Link to={"/"} style={{ color: "#FF0004" }}>
+            Rebuliço Stories
+          </Link>
         </li>
         <li>
-          <a style={{ color: "#009211" }}>Pesquisa</a>
+          <Link to={"/"} style={{ color: "#009211" }}>
+            Pesquisa
+          </Link>
         </li>
         <li>
-          <a style={{ color: "#76FAFF" }}>Publicação</a>
+          <Link to={"/"} style={{ color: "#76FAFF" }}>
+            Publicação
+          </Link>
         </li>
         <li>
-          <a style={{ color: "#FF6200" }}>Entrevistas</a>
+          <Link to={"/"} style={{ color: "#FF6200" }}>
+            Entrevistas
+          </Link>
         </li>
       </NavigationMenu>
     </div>
