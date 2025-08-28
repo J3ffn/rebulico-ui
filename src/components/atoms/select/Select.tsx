@@ -10,6 +10,7 @@ interface SelectProps {
     name: string;
     attributes?: React.OptionHTMLAttributes<any>;
   }[];
+  register?: ReturnType<any>;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -17,11 +18,17 @@ const Select: React.FC<SelectProps> = ({
   placeholder,
   attributes,
   options,
+  register,
 }) => {
   return (
     <label htmlFor={label} className={styles.label_select_container}>
       {label}
-      <select id={label} {...attributes} className={styles.select_container}>
+      <select
+        id={label}
+        {...(register ? register : {})}
+        {...attributes}
+        className={styles.select_container}
+      >
         <option value="" disabled>
           {placeholder}
         </option>

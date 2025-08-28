@@ -1,7 +1,7 @@
 import { Lock, LockOpen, TextFields } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import type { EditorOptions } from "@tiptap/core";
-import React from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import {
   LinkBubbleMenu,
   MenuButton,
@@ -12,12 +12,18 @@ import {
 } from "mui-tiptap";
 import EditorMenuControls from "src/components/molecules/EditorMenuControls/EditorMenuControls";
 import useExtensions from "src/hooks/extensions/useExtensions";
-import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
+// import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
 
 import documentIcon from "../../../assets/images/createPost/document.svg";
 
 import styles from "./ContentEditor.module.css";
 import IconText from "src/components/molecules/IconText/IconText";
+import { useForm } from "react-hook-form";
+
+interface ContentEditorProps {
+  onChange: ({ content, images }: { content: string; images: File[] }) => void;
+  initialContent?: { content: string };
+}
 
 function fileListToImageFiles(fileList: FileList): File[] {
   return Array.from(fileList).filter((file) => {
@@ -26,8 +32,49 @@ function fileListToImageFiles(fileList: FileList): File[] {
   });
 }
 
-export default function ContentEditor() {
-  const { setNoticeField } = useCreateNotice();
+const extractImageOrderAndAttributes = (html: string) => {
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  const images = Array.from(div.querySelectorAll("img"));
+  return images.map((img) => ({
+    src: img.src,
+    alt: img.alt,
+    width: img.width,
+    height: img.height,
+  }));
+};
+
+const ContentEditor = forwardRef((props: ContentEditorProps, ref) => {
+  const {
+    register,
+    trigger,
+    setValue,
+    formState: { errors },
+  } = useForm<{ content: string }>({
+    defaultValues: props.initialContent || {
+      content: "",
+    },
+  });
+  register("content", {
+    required: "O conteúdo é obrigatório.",
+    minLength: {
+      value: 20,
+      message: "O conteúdo deve ter pelo menos 20 caracteres.",
+    },
+    validate: (value) =>
+      value.replace(/<[^>]+>/g, "").trim().length > 0 ||
+      "O conteúdo não pode ser vazio.",
+  });
+
+  // const { setNoticeField } = useCreateNotice();
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      validate: () => trigger("content"),
+    }),
+    [trigger]
+  );
 
   const extensions = useExtensions({
     placeholder: "Adicione o conteúdo aqui...",
@@ -36,16 +83,22 @@ export default function ContentEditor() {
   const rteRef = React.useRef<RichTextEditorRef>(null);
   const [isEditable, setIsEditable] = React.useState(true);
   const [showMenuBar, setShowMenuBar] = React.useState(true);
+  const imagesRef = useRef<{ file: File; url: string }[]>([]);
 
   const handleNewImageFiles = React.useCallback(
     (files: File[], insertPosition?: number): void => {
-      if (!rteRef.current?.editor) {
-        return;
-      }
+      if (!rteRef.current?.editor) return;
 
-      const attributesForImageFiles = files.map((file) => ({
-        src: URL.createObjectURL(file),
-        alt: file.name,
+      const newImageObjs = files.map((file) => ({
+        file,
+        url: URL.createObjectURL(file),
+      }));
+
+      imagesRef.current = [...imagesRef.current, ...newImageObjs];
+
+      const attributesForImageFiles = newImageObjs.map((obj) => ({
+        src: obj.url,
+        alt: obj.file.name,
       }));
 
       insertImages({
@@ -53,6 +106,9 @@ export default function ContentEditor() {
         editor: rteRef.current.editor,
         position: insertPosition,
       });
+
+      const html = rteRef.current.editor.getHTML();
+      changeContent(html);
     },
     []
   );
@@ -108,7 +164,19 @@ export default function ContentEditor() {
     );
 
   function changeContent(data: string) {
-    setNoticeField("content", data);
+    const imageAttrs = extractImageOrderAndAttributes(data);
+    const htmlImageSrcs = imageAttrs.map((attr: any) => attr.src);
+
+    imagesRef.current = imagesRef.current.filter((obj) =>
+      htmlImageSrcs.includes(obj.url)
+    );
+
+    props.onChange({
+      content: data,
+      images: imagesRef.current.map((obj) => obj.file),
+    });
+    
+    setValue("content", data, { shouldValidate: true });
   }
 
   return (
@@ -120,6 +188,18 @@ export default function ContentEditor() {
         }}
         text="Conteúdo da postagem:"
       />
+      {errors.content && (
+        <span
+          style={{
+            position: "relative",
+            bottom: "5px",
+            color: "red",
+            fontSize: "12px",
+          }}
+        >
+          {errors.content.message}
+        </span>
+      )}
 
       <Box
         sx={{
@@ -200,4 +280,6 @@ export default function ContentEditor() {
       </Box>
     </>
   );
-}
+});
+
+export default ContentEditor;

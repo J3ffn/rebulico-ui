@@ -14,7 +14,7 @@ const Label: React.FC<LabelProps> = ({ text, htmlFor, children, required }) => {
     <label htmlFor={htmlFor} className={styles.label_container}>
       <div className={styles.label_text_container}>
         {text}
-        {required && <span style={{ color: "red", marginLeft: '2px' }}>*</span>}:
+        {required && <span style={{ color: "red", marginLeft: '2px' }}>*</span>}
       </div>
       {children}
     </label>

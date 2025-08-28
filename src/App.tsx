@@ -9,45 +9,48 @@ import RegistryPage from "./pages/auth/registry/Registry.page";
 import AuthTemplate from "./components/templates/auth/Auth.template";
 import { AuthContextStorage } from "./context/auth/auth.context";
 import { RequireAuth } from "./utiils/RequireAuth";
+import { ToastStorage } from "./context/toast/Toast.context";
 
 function App() {
   return (
     <AuthContextStorage>
-      <Router>
-        <Routes>
-          {/* AUTH */}
-          <Route
-            path="/auth/login"
-            element={<AuthTemplate mainContent={<LoginPage />} />}
-          />
-          <Route
-            path="/auth/cadastro"
-            element={<AuthTemplate mainContent={<RegistryPage />} />}
-          />
+      <ToastStorage>
+        <Router>
+          <Routes>
+            {/* AUTH */}
+            <Route
+              path="/auth/login"
+              element={<AuthTemplate mainContent={<LoginPage />} />}
+            />
+            <Route
+              path="/auth/cadastro"
+              element={<AuthTemplate mainContent={<RegistryPage />} />}
+            />
 
-          {/* FLUXOS */}
-          <Route
-            path="/"
-            element={<PageTemplate mainContent={<HomePage />} />}
-          />
-          <Route
-            path="/noticia/:id"
-            element={<PageTemplate mainContent={<NoticePage />} />}
-          />
-          <Route
-            path="/criar/post"
-            element={
-              <PageTemplate
-                mainContent={
-                  <RequireAuth allowedRoles={["admin", "author"]}>
-                    <CreatePostPage />
-                  </RequireAuth>
-                }
-              />
-            }
-          />
-        </Routes>
-      </Router>
+            {/* FLUXOS */}
+            <Route
+              path="/"
+              element={<PageTemplate mainContent={<HomePage />} />}
+            />
+            <Route
+              path="/noticia/:id"
+              element={<PageTemplate mainContent={<NoticePage />} />}
+            />
+            <Route
+              path="/criar/post"
+              element={
+                <PageTemplate
+                  mainContent={
+                    <RequireAuth allowedRoles={["admin", "author", "user"]}>
+                      <CreatePostPage />
+                    </RequireAuth>
+                  }
+                />
+              }
+            />
+          </Routes>
+        </Router>
+      </ToastStorage>
     </AuthContextStorage>
   );
 }

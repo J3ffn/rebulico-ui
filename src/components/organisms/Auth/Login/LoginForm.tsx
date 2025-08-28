@@ -6,6 +6,7 @@ import styles from "./LoginForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "src/context/auth/auth.context";
 import { useContext } from "react";
+import { useToast } from "src/context/toast/Toast.context";
 
 const LoginForm = () => {
   const authContext = useContext(AuthContext);
@@ -15,6 +16,8 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<{ email: string; password: string }>();
   const navigate = useNavigate();
+  const toastContext = useToast();
+  const showToast = toastContext!.showToast;
 
   const onSubmit = async (loginData: { email: string; password: string }) => {
     try {
@@ -24,10 +27,11 @@ const LoginForm = () => {
       );
 
       if (response) {
+        showToast("Login realizado com sucesso!", "success");
         navigate("/");
       }
     } catch (err: any) {
-      window.alert(err.message);
+      showToast(err.message, "error");
     }
   };
 

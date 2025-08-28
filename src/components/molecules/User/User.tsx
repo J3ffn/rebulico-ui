@@ -8,6 +8,7 @@ import { UserMenu } from "src/components/atoms/userMenu/UserMenu";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Icon from "src/components/atoms/Icon/Icon";
+import { useToast } from "src/context/toast/Toast.context";
 
 const User = () => {
   const authContext = useContext(AuthContext);
@@ -20,6 +21,8 @@ const User = () => {
     null
   );
   const isAuthenticated = authContext?.isAuthenticated;
+  const toastContext = useToast();
+  const showToast = toastContext!.showToast;
   const userMenuItems = [
     {
       label: "Perfil",
@@ -27,7 +30,11 @@ const User = () => {
     },
     {
       label: "Logout",
-      onClick: () => authContext?.logout(),
+      onClick: () => {
+        authContext?.logout();
+        navigate("/");
+        showToast("Logout realizado com sucesso!", "success");
+      },
     },
   ];
 

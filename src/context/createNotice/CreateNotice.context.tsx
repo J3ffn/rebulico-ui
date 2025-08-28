@@ -34,7 +34,7 @@ export const CreateNoticeStorage = ({
   const [notice, setNotice] = React.useState(defaultNotice);
 
   React.useEffect(() => {
-    console.log(notice)
+    // console.log(notice)
   }, [notice])
 
   const setNoticeField = (field: keyof typeof defaultNotice, value: string) => {

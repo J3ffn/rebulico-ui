@@ -1,0 +1,21 @@
+.page_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submit_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  background-color: #931c80;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}

@@ -1,4 +1,10 @@
-import React from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import IconText from "../IconText/IconText";
 
 import postInformationIcon from "../../../assets/images/createPost/post-informations-icon.svg";
@@ -8,17 +14,76 @@ import Input from "src/components/atoms/Input/Input";
 import Select from "src/components/atoms/select/Select";
 import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
 import Label from "src/components/atoms/label/Label";
+import { useForm } from "react-hook-form";
 // import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
 
-const PostInformationDefine = () => {
-  const [anoutherPerson, setAnoutherPerson] = React.useState(false);
-  const anotherPersonInputRef = React.useRef<any>(null);
+interface PostInformationProps {
+  onChange: (data: PostInformationForm) => void;
+  initialData?: PostInformationForm;
+}
 
-  React.useEffect(() => {
-    if (anoutherPerson && anotherPersonInputRef.current) {
+export interface PostInformationForm {
+  title: string;
+  tag: string;
+  timeToRead: string;
+  author: string;
+  collaborator: string;
+  principalImage: File | null;
+}
+
+const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
+  const {
+    register,
+    watch,
+    trigger,
+    setValue,
+    formState: { errors },
+  } = useForm<PostInformationForm>({
+    defaultValues: props.initialData || {
+      title: "",
+      tag: "",
+      timeToRead: "",
+      author: "",
+      principalImage: null,
+    },
+    mode: "onChange",
+  });
+
+  const username = JSON.parse(localStorage.getItem("authInfo") || "{}").userInfo
+    .username;
+  const authorValue = watch("author");
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      props.onChange(value as PostInformationForm);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, props.onChange]);
+
+  const [anotherPerson, setAnotherPerson] = useState(false);
+  const anotherPersonInputRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (anotherPerson) {
+      setValue("author", "", { shouldValidate: true });
       anotherPersonInputRef.current.focus();
+      return;
     }
-  }, [anoutherPerson]);
+
+    setValue("author", username, { shouldValidate: true });
+  }, [anotherPerson, username, setValue]);
+
+  const setAuthor = (author: string) => {
+    setValue("author", author, { shouldValidate: true });
+  };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      validate: () => trigger(),
+    }),
+    [trigger]
+  );
 
   // const { setNoticeField } = useCreateNotice();
 
@@ -28,7 +93,7 @@ const PostInformationDefine = () => {
 
   const handleImageChange = (file: File | null) => {
     if (file) {
-      console.log("Imagem selecionada:", file);
+      setValue("principalImage", file, { shouldValidate: true });
     }
   };
 
@@ -45,35 +110,63 @@ const PostInformationDefine = () => {
         <div
           className={`${styles.postInformation__form_line} ${styles.postInformation__form_firstLine}`}
         >
-          <Label text="Título:" htmlFor="title" required>
+          <Label text="Título" htmlFor="title" required>
             <Input
               id="title"
               stylesPersonalized={{ minWidth: "278px" }}
               placeholder="Ex: Sorteio de carro se mostra ser golpe..."
+              {...register("title", { required: "O título é obrigatório." })}
             />
+            {errors.title && (
+              <span
+                style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
+              >
+                {errors.title.message as string}
+              </span>
+            )}
           </Label>
 
-          <Select
-            label="Tag"
-            placeholder="Selecionen uma Tag"
-            options={[
-              { name: "Noticia" },
-              { name: "Documentário" },
-              { name: "Resenha" },
-            ]}
-            attributes={{
-              onChange: ({ target }) => {
-                console.log(target.value);
-              },
-            }}
-          />
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+            <Select
+              label="Tag"
+              placeholder="Selecionen uma Tag"
+              options={[
+                { name: "Noticia" },
+                { name: "Documentário" },
+                { name: "Resenha" },
+              ]}
+              // attributes={{
+              //   onChange: ({ target }) => {
+              //     console.log(target.value);
+              //   },
+              // }}
+              register={register("tag", { required: "A tag é obrigatória." })}
+            />
+            {errors.tag && (
+              <span
+                style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
+              >
+                {errors.tag.message as string}
+              </span>
+            )}
+          </div>
 
-          <Label text="Tempo de leitura:" htmlFor="read-time" required>
+          <Label text="Tempo de leitura" htmlFor="read-time" required>
             <Input
               id="read-time"
               stylesPersonalized={{ width: "125px" }}
               placeholder="Tempo de leitura"
+              {...register("timeToRead", {
+                required: "O tempo de leitura é obrigatório.",
+              })}
             />
+            {errors.timeToRead && (
+              <span
+                style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
+              >
+                {errors.timeToRead.message as string}
+              </span>
+            )}
           </Label>
         </div>
         <div
@@ -86,52 +179,77 @@ const PostInformationDefine = () => {
             >
               <label htmlFor="radio-button-eu-mesmo">
                 <input
-                  checked={!anoutherPerson}
+                  checked={!anotherPerson}
                   type="radio"
                   id="radio-button-eu-mesmo"
                   name="autor"
-                  onChange={() => setAnoutherPerson(false)}
+                  onChange={() => setAnotherPerson(false)}
                 />
                 Eu mesmo
               </label>
               <label htmlFor="radio-button-outra-pessoa">
                 <input
-                  checked={anoutherPerson}
+                  checked={anotherPerson}
                   type="radio"
                   id="radio-button-outra-pessoa"
                   name="autor"
-                  onChange={() => setAnoutherPerson(true)}
+                  onChange={() => setAnotherPerson(true)}
                 />
                 Outra pessoa
+              </label>
+              <label
+                htmlFor="Another-person"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "5px",
+                }}
+              >
                 <Input
-                  id={"Anouther-person"}
+                  id={"Another-person"}
+                  {...register("author", {
+                    required: "O autor é obrigatório.",
+                  })}
+                  onChange={(e) => setAuthor(e.target.value)}
                   ref={anotherPersonInputRef}
                   stylesPersonalized={{ display: "inline" }}
                   placeholder={
-                    !anoutherPerson
+                    !anotherPerson
                       ? "Desabilitado"
                       : "Digite o nome do autor..."
                   }
-                  disabled={!anoutherPerson}
+                  disabled={!anotherPerson}
+                  value={authorValue}
                 />
+                {errors.author && (
+                  <span
+                    style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
+                  >
+                    {errors.author.message as string}
+                  </span>
+                )}
               </label>
             </div>
           </div>
-          <Label text="Colaborador:" htmlFor="colaborater">
-            <Input id="colaborater" stylesPersonalized={{ width: "125px" }} />
+          <Label text="Colaborador" htmlFor="colaborater">
+            <Input
+              id="colaborater"
+              stylesPersonalized={{ width: "125px" }}
+              {...register("collaborator")}
+            />
           </Label>
 
-          <label htmlFor="">
-            Imagem principal
+          <Label text="Imagem principal" htmlFor="image-upload">
             <ImageUpload
               onImageChange={handleImageChange}
               // stylesPersonalized={{ marginTop: "20px" }}
             />
-          </label>
+          </Label>
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default PostInformationDefine;
