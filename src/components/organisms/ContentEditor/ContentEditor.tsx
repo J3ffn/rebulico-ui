@@ -175,7 +175,7 @@ const ContentEditor = forwardRef((props: ContentEditorProps, ref) => {
       content: data,
       images: imagesRef.current.map((obj) => obj.file),
     });
-    
+
     setValue("content", data, { shouldValidate: true });
   }
 
@@ -219,7 +219,7 @@ const ContentEditor = forwardRef((props: ContentEditorProps, ref) => {
             handleDrop: handleDrop,
             handlePaste: handlePaste,
           }}
-          renderControls={() => <EditorMenuControls />}
+          renderControls={() => <EditorMenuControls onUploadImages={handleNewImageFiles} />}
           RichTextFieldProps={{
             className: styles.content_editor_container,
             // A variante "outlined" é a padrão (mostrada aqui apenas como

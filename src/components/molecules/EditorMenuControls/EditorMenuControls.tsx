@@ -32,7 +32,13 @@ import {
   isTouchDevice,
 } from "mui-tiptap";
 
-export default function ControlesMenuEditor() {
+interface EditorMenuControlsProps {
+  onUploadImages?: (files: File[], insertPosition?: number) => void;
+}
+
+export default function ControlesMenuEditor({
+  onUploadImages,
+}: EditorMenuControlsProps) {
   const tema = useTheme();
   return (
     <MenuControlsContainer>
@@ -124,12 +130,17 @@ export default function ControlesMenuEditor() {
       <MenuDivider />
 
       <MenuButtonImageUpload
-        onUploadFiles={(files) =>
-          files.map((file) => ({
-            src: URL.createObjectURL(file),
-            alt: file.name,
-          }))
-        }
+        onUploadFiles={(files) => {
+          if (onUploadImages) {
+            onUploadImages(files);
+            return [];
+          } else {
+            return files.map((file) => ({
+              src: URL.createObjectURL(file),
+              alt: file.name,
+            }));
+          }
+        }}
       />
 
       <MenuDivider />
