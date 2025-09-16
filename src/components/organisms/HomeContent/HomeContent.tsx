@@ -10,15 +10,16 @@ import Stories from "src/components/molecules/Stories/Stories";
 
 const HomeContent = () => {
   const context = React.useContext(PrincipalsNoticesContext);
+  const principalNotices = context?.principalsNotices;
 
   return (
     <div className={styles.home_content_container}>
-      {context?.principalsNotices && (
+      {principalNotices && (
         <main>
           <ContentBound>
             <section className={styles.principals_news_section}>
-              <HighlightNews content={context.principalsNotices.highlight} />
-              <LatestNews content={context.principalsNotices.latest_news} />
+              <HighlightNews content={principalNotices?.highlight} />
+              <LatestNews content={principalNotices?.latest_news} />
             </section>
           </ContentBound>
           <section className={styles.recent_updates_section}>
@@ -26,14 +27,14 @@ const HomeContent = () => {
               classNamePersonalized={styles.recent_updates_container}
             >
               <RecentUpdates
-                content={context.principalsNotices.recent_updates}
+                content={principalNotices?.recent_updates}
               />
             </ContentBound>
           </section>
           <section className={styles.latest_posts_section}>
             <ContentBound classNamePersonalized={styles.latest_posts_container}>
-              <LatestPosts content={context.principalsNotices.latest_posts} />
-              <Stories content={context.principalsNotices.stories} />
+              <LatestPosts content={principalNotices?.latest_posts} />
+              <Stories content={principalNotices?.stories} />
             </ContentBound>
           </section>
         </main>

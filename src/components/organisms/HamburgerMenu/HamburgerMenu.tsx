@@ -37,7 +37,7 @@ const HamburgerMenu: React.FC = () => {
               <Link to={"/"}>Projeto</Link>
             </li>
             <li>
-              <Link to={"/"}>Quem somos</Link>
+              <Link to={"/quem-somos"}>Quem somos</Link>
             </li>
             <li>
               <Link to={"/"}>Manifesto</Link>
