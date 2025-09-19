@@ -204,27 +204,27 @@ export const getPrincipalsPosts = async () => {
 };
 
 export const getNotice = async (idPost: string) => {
-  // try {
-  //   const response = await fetch(`${BASE_URL}/notice/${idPost}`);
-  //   if (!response.ok) {
-  //     return {
-  //       error: response.body,
-  //     };
-  //   }
-  //   return response.json();
-  // } catch (error: any) {
-  //   return {
-  //     error: error.message,
-  //   };
-  // }
-
-  const postFinded = NoticesWithDetails[idPost];
-
-  if (!postFinded) {
-    return DefaultNotice;
+  try {
+    const response = await fetch(`${BASE_URL}/post/${idPost}`);
+    if (!response.ok) {
+      return {
+        error: response.body,
+      };
+    }
+    return response.json();
+  } catch (error: any) {
+    return {
+      error: error.message,
+    };
   }
 
-  return postFinded;
+  // const postFinded = NoticesWithDetails[idPost];
+
+  // if (!postFinded) {
+  //   return DefaultNotice;
+  // }
+
+  // return postFinded;
 };
 
 export const createPost = async (postData: object) => {
