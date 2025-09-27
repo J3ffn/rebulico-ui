@@ -10,6 +10,7 @@ import AuthTemplate from "./components/templates/auth/Auth.template";
 import { AuthContextStorage } from "./context/auth/auth.context";
 import { RequireAuth } from "./utiils/RequireAuth";
 import { ToastStorage } from "./context/toast/Toast.context";
+import About from "./pages/about/About";
 
 function App() {
   return (
@@ -35,6 +36,10 @@ function App() {
               <Route
                 path="/noticia/:id"
                 element={<PageTemplate mainContent={<NoticePage />} />}
+              />
+              <Route 
+                path="/quem-somos"
+                element={<PageTemplate mainContent={<About />} />}
               />
 
               {/* CREATE POSTS */}
