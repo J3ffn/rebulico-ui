@@ -7,6 +7,7 @@ import ContentBound from "src/components/molecules/ContentBound/ContentBound";
 import { getNotice } from "src/shared/api";
 import { NoticeModel } from "src/shared/models/Notice.model";
 import AuthorPost from "src/components/molecules/AuthorPost/AuthorPost";
+import loaderImg from "../../assets/images/loading/motion-blur-loader.svg";
 
 const NoticePage = () => {
   const param = useParams();
@@ -28,7 +29,13 @@ const NoticePage = () => {
     <div className={styles.notice_page_container}>
       <ContentBound>
         {!notice ? (
-          <h2>Carregando notícia...</h2>
+          <div className={styles.load_notice}>
+            <img
+              className={styles.loader_img}
+              src={loaderImg}
+              alt="Carregando"
+            />
+          </div>
         ) : (
           <div className={styles.notice_page_content_container}>
             {/* <AuthorPost
@@ -38,10 +45,7 @@ const NoticePage = () => {
             <h1>{notice.title}</h1>
             <div dangerouslySetInnerHTML={{ __html: notice.content }} />
             <div className={styles.notice_page_author_container}>
-              <AuthorPost
-                name={notice.author.name}
-                isNoticePage={true}
-              />
+              <AuthorPost name={notice.author.name} isNoticePage={true} />
             </div>
           </div>
           // <div className={styles.notice_page_body_container}>
