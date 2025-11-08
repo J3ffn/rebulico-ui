@@ -4,6 +4,7 @@
   gap: 50px;
   align-items: center;
   min-height: calc(100vh - 413px);
+  padding: 50px 0;
 }
 
 .about_text_container {
@@ -14,7 +15,6 @@
 }
 
 .about_title {
-  margin-top: 50px;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 2rem;
@@ -25,9 +25,10 @@
 .about_text {
   font-family: "Raleway", sans-serif;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 100%;
   /* text-align: center; */
+  line-height: 24px;
 }
 
 .people_involved {

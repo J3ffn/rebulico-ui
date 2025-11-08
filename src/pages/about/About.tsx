@@ -56,8 +56,15 @@ const About = () => {
         <p className={styles.about_text}>
           Mais do que um projeto, o Rebuliço é uma escola de escuta e
           sensibilidade, um laboratório de humanidade em meio às urgências do
-          nosso tempo. Somos o que se rebela contra o silêncio. Somos o que se
-          move nas bordas. Somos o Rebuliço.
+          nosso tempo.
+        </p>
+
+        <p className={styles.about_text}>
+          Somos o que se rebela contra o silêncio.
+          <br />
+          Somos o que se move nas bordas.
+          <br />
+          Somos o Rebuliço.
         </p>
       </div>
     </ContentBound>
