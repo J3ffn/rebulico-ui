@@ -55,6 +55,7 @@ const ContentEditor = forwardRef((props: ContentEditorProps, ref) => {
     trigger,
     setValue,
     formState: { errors },
+    reset
   } = useForm<{ content: string }>({
     defaultValues: props.initialContent || {
       content: "",
@@ -77,8 +78,13 @@ const ContentEditor = forwardRef((props: ContentEditorProps, ref) => {
     ref,
     () => ({
       validate: () => trigger("content"),
+      resetForm: () => {
+        reset();
+        rteRef.current?.editor?.commands.clearContent();
+        imagesRef.current = [];
+      },
     }),
-    [trigger]
+    [trigger, reset]
   );
 
   const extensions = useExtensions({

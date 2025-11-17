@@ -92,9 +92,9 @@ const CreatePostPage = () => {
 
       await createPost(formData);
 
-      showToast("Post criado com sucesso!", "success");
-      postInfoRef.current?.reset();
-      contentEditorRef.current?.reset();
+      showToast("Post criado com sucesso", "success");
+      postInfoRef.current?.resetForm();
+      contentEditorRef.current?.resetForm();
     } catch (error) {
       console.error("Erro ao criar o post:", error);
       showToast("Erro ao criar o post", "error");
@@ -114,7 +114,7 @@ const CreatePostPage = () => {
               <Icon src={checkmarkOutline} ariaLabel="checked"></Icon>
             </button>
           </div>
-          <ContentBound personalPadding="40px 90px 0px 90px">
+          <ContentBound personalPadding="40px 90px 0px 90px" classNamePersonalized={styles.content_bound}>
             <PostInformationDefine
               ref={postInfoRef}
               onChange={setPostInfo}
@@ -122,7 +122,9 @@ const CreatePostPage = () => {
               tags={tags}
               setTag={setTag}
             />
-            <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />
+            <div style={{ marginTop: "1rem" }}>
+              <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />
+            </div>
           </ContentBound>
         </CreateNoticeStorage>
       </ContentBound>

@@ -41,6 +41,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     trigger,
     setValue,
     formState: { errors },
+    reset
   } = useForm<PostInformationForm>({
     defaultValues: props.initialData || {
       title: "",
@@ -51,6 +52,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     },
     mode: "onChange",
   });
+  const imageInputRef = useRef<any>(null);
 
   const username = JSON.parse(localStorage.getItem("authInfo") || "{}").userInfo
     .username;
@@ -84,8 +86,14 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     ref,
     () => ({
       validate: () => trigger(),
+      resetForm: () => {
+        reset();
+        setAnotherPerson(false);
+        setValue("author", username, { shouldValidate: true });
+        imageInputRef.current.reset();
+      },
     }),
-    [trigger]
+    [trigger, reset]
   );
 
   // const { setNoticeField } = useCreateNotice();
@@ -252,6 +260,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
 
           <Label text="Imagem principal" htmlFor="image-upload">
             <ImageUpload
+              ref={imageInputRef}
               onImageChange={handleImageChange}
               // stylesPersonalized={{ marginTop: "20px" }}
             />

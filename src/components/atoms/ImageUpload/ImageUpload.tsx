@@ -1,17 +1,22 @@
-import React from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import styles from "./ImageUpload.module.css";
 import fileIcon from "assets/images/createPost/fIle-icon.svg";
 import { ToastContext } from "src/context/toast/Toast.context";
+
+export type ImageUploadRef = {
+  reset: () => void;
+};
 
 interface ImageUploadProps {
   onImageChange: (file: File | null) => void;
   stylesPersonalized?: React.CSSProperties;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange, stylesPersonalized }) => {
+const ImageUpload = forwardRef<ImageUploadRef, ImageUploadProps>(({ onImageChange, stylesPersonalized }, ref) => {
   const [imageData, setImageData] = React.useState<File>();
   const toastContext = React.useContext(ToastContext);
   const showToast = toastContext!.showToast;
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -28,19 +33,24 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange, stylesPersonal
     }
   };
 
+  useImperativeHandle(ref, () => ({
+    reset() {
+      setImageData(undefined);
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+      onImageChange(null);
+    },
+  }));
+
   return (
     <div className={styles.imageUploadContainer} style={stylesPersonalized}>
       <label htmlFor="image-upload" className={styles.imageUploadLabel}>
-        <img
-          src={fileIcon}
-          alt="Ícone de imagem"
-          className={styles.imageIcon}
-        />
-        <span className={styles.imageUploadName}>
-          {imageData?.name ?? "Selecione uma imagem..."}
-        </span>
+        <img src={fileIcon} alt="Ícone de imagem" className={styles.imageIcon} />
+        <span className={styles.imageUploadName}>{imageData?.name ?? "Selecione uma imagem..."}</span>
       </label>
       <input
+        ref={inputRef}
         type="file"
         id="image-upload"
         accept="image/*"
@@ -49,6 +59,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange, stylesPersonal
       />
     </div>
   );
-};
+});
 
 export default ImageUpload;
