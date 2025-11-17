@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ImageUpload.module.css";
 import fileIcon from "assets/images/createPost/fIle-icon.svg";
+import { ToastContext } from "src/context/toast/Toast.context";
 
 interface ImageUploadProps {
   onImageChange: (file: File | null) => void;
@@ -9,10 +10,17 @@ interface ImageUploadProps {
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange, stylesPersonalized }) => {
   const [imageData, setImageData] = React.useState<File>();
+  const toastContext = React.useContext(ToastContext);
+  const showToast = toastContext!.showToast;
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const fileData = event.target.files[0];
+      if (fileData.type.split("/")[0] !== "image") {
+        event.target.value = "";
+        showToast("Apenas imagens são permitidas", "error");
+        return;
+      }
       setImageData(fileData);
       onImageChange(event.target.files[0]);
     } else {

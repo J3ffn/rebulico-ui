@@ -15,11 +15,14 @@ import Select from "src/components/atoms/select/Select";
 import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
 import Label from "src/components/atoms/label/Label";
 import { useForm } from "react-hook-form";
+import { Tag } from "src/shared/models/Notice.model";
 // import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
 
 interface PostInformationProps {
   onChange: (data: PostInformationForm) => void;
   initialData?: PostInformationForm;
+  tags: Tag[];
+  setTag: (tag: Tag) => void;
 }
 
 export interface PostInformationForm {
@@ -130,16 +133,18 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
             <Select
               label="Tag"
               placeholder="Selecionen uma Tag"
-              options={[
-                { name: "Noticia" },
-                { name: "Documentário" },
-                { name: "Resenha" },
-              ]}
-              // attributes={{
-              //   onChange: ({ target }) => {
-              //     console.log(target.value);
-              //   },
-              // }}
+              options={props?.tags?.map((tag) => ({
+                tag: tag as Tag,
+                attributes: {},
+              }))}
+              attributes={{
+                onChange: ({ target }) => {
+                  setValue("tag", target.value, { shouldValidate: true });
+                  props.setTag(
+                    props.tags.find((tag) => tag._id === target.value) as Tag
+                  );
+                },
+              }}
               register={register("tag", { required: "A tag é obrigatória." })}
             />
             {errors.tag && (
@@ -159,6 +164,11 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
               {...register("timeToRead", {
                 required: "O tempo de leitura é obrigatório.",
               })}
+              onChange={(e) => {
+                setValue("timeToRead", e.target.value.replace(/[^0-9]/g, ""), {
+                  shouldValidate: true,
+                });
+              }}
             />
             {errors.timeToRead && (
               <span

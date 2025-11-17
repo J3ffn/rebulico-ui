@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 interface ContentEditorProps {
   onChange: ({ content, images }: { content: string; images: File[] }) => void;
   initialContent?: { content: string };
+  imgSrcMap?: (imageUrls: Array<{ src: string }>) => void;
 }
 
 function fileListToImageFiles(fileList: FileList): File[] {
@@ -30,6 +31,10 @@ function fileListToImageFiles(fileList: FileList): File[] {
     const mimeType = (file.type || "").toLowerCase();
     return mimeType.startsWith("image/");
   });
+}
+
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 const extractImageOrderAndAttributes = (html: string) => {
@@ -165,14 +170,24 @@ const ContentEditor = forwardRef((props: ContentEditorProps, ref) => {
 
   function changeContent(data: string) {
     const imageAttrs = extractImageOrderAndAttributes(data);
-    const htmlImageSrcs = imageAttrs.map((attr: any) => attr.src);
+    const htmlImageSrc = imageAttrs.map((attr: any) => attr.src);
 
     imagesRef.current = imagesRef.current.filter((obj) =>
-      htmlImageSrcs.includes(obj.url)
+      htmlImageSrc.includes(obj.url)
     );
 
+    let cleanedContent = data;
+
+    imagesRef.current.forEach((imageObj) => {
+      const blobUrl = imageObj.url;
+      const originalName = imageObj.file.name;
+
+      const regex = new RegExp(escapeRegExp(blobUrl), 'g');
+      cleanedContent = cleanedContent.replace(regex, originalName);
+    });
+
     props.onChange({
-      content: data,
+      content: cleanedContent,
       images: imagesRef.current.map((obj) => obj.file),
     });
 
