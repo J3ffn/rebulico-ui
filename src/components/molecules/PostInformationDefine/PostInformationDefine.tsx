@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import IconText from "../IconText/IconText";
 
 import postInformationIcon from "../../../assets/images/createPost/post-informations-icon.svg";
@@ -41,7 +35,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     trigger,
     setValue,
     formState: { errors },
-    reset
+    reset,
   } = useForm<PostInformationForm>({
     defaultValues: props.initialData || {
       title: "",
@@ -54,8 +48,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
   });
   const imageInputRef = useRef<any>(null);
 
-  const username = JSON.parse(localStorage.getItem("authInfo") || "{}").userInfo
-    .username;
+  const username = JSON.parse(localStorage.getItem("authInfo") || "{}").userInfo.username;
   const authorValue = watch("author");
 
   useEffect(() => {
@@ -118,154 +111,111 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
         text="Informações da postagem:"
       />
       <div className={styles.postInformation_form_container}>
-        <div
-          className={`${styles.postInformation__form_line} ${styles.postInformation__form_firstLine}`}
-        >
-          <Label text="Título" htmlFor="title" required>
-            <Input
-              id="title"
-              stylesPersonalized={{ minWidth: "278px" }}
-              placeholder="Ex: Sorteio de carro se mostra ser golpe..."
-              {...register("title", { required: "O título é obrigatório." })}
-            />
-            {errors.title && (
-              <span
-                style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
-              >
-                {errors.title.message as string}
-              </span>
-            )}
-          </Label>
+        <Label text="Título" htmlFor="title" required>
+          <Input
+            id="title"
+            stylesPersonalized={{ width: "100%" }}
+            placeholder="Ex: Sorteio de carro se mostra ser golpe..."
+            {...register("title", { required: "O título é obrigatório." })}
+          />
+          {errors.title && (
+            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>{errors.title.message as string}</span>
+          )}
+        </Label>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-            <Select
-              label="Tag"
-              placeholder="Selecionen uma Tag"
-              options={props?.tags?.map((tag) => ({
-                tag: tag as Tag,
-                attributes: {},
-              }))}
-              attributes={{
-                onChange: ({ target }) => {
-                  setValue("tag", target.value, { shouldValidate: true });
-                  props.setTag(
-                    props.tags.find((tag) => tag._id === target.value) as Tag
-                  );
-                },
-              }}
-              register={register("tag", { required: "A tag é obrigatória." })}
-            />
-            {errors.tag && (
-              <span
-                style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
-              >
-                {errors.tag.message as string}
-              </span>
-            )}
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+          <Select
+            render={() => {
+              return (
+                <label htmlFor="tag">
+                  Tag<span style={{ color: "red", marginLeft: '2px' }}>*</span>
+                </label>
+              );
+            }}
+            label="Tag *"
+            placeholder="Selecionen uma Tag"
+            options={props?.tags?.map((tag) => ({
+              tag: tag as Tag,
+              attributes: {},
+            }))}
+            attributes={{
+              onChange: ({ target }) => {
+                setValue("tag", target.value, { shouldValidate: true });
+                props.setTag(props.tags.find((tag) => tag._id === target.value) as Tag);
+              },
+            }}
+            register={register("tag", { required: "A tag é obrigatória." })}
+          />
+          {errors.tag && (
+            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>{errors.tag.message as string}</span>
+          )}
+        </div>
 
-          <Label text="Tempo de leitura" htmlFor="read-time" required>
+        <Label text="Tempo de leitura" htmlFor="read-time" required>
+          <Input
+            id="read-time"
+            stylesPersonalized={{ width: "100%" }}
+            placeholder="Tempo de leitura"
+            {...register("timeToRead", {
+              required: "O tempo de leitura é obrigatório.",
+            })}
+            onChange={(e) => {
+              setValue("timeToRead", e.target.value.replace(/[^0-9]/g, ""), {
+                shouldValidate: true,
+              });
+            }}
+          />
+          {errors.timeToRead && (
+            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>
+              {errors.timeToRead.message as string}
+            </span>
+          )}
+        </Label>
+        <Label text="Autor" htmlFor="Another-person" required>
+          <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: "5px" }}>
             <Input
-              id="read-time"
-              stylesPersonalized={{ width: "125px" }}
-              placeholder="Tempo de leitura"
-              {...register("timeToRead", {
-                required: "O tempo de leitura é obrigatório.",
+              id={"Another-person"}
+              {...register("author", {
+                required: "O autor é obrigatório.",
               })}
-              onChange={(e) => {
-                setValue("timeToRead", e.target.value.replace(/[^0-9]/g, ""), {
-                  shouldValidate: true,
-                });
-              }}
+              onChange={(e) => setAuthor(e.target.value)}
+              ref={anotherPersonInputRef}
+              stylesPersonalized={{ width: "100%" }}
+              placeholder={!anotherPerson ? "Desabilitado" : "Digite o nome do autor..."}
+              disabled={!anotherPerson}
+              value={authorValue}
             />
-            {errors.timeToRead && (
-              <span
-                style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
-              >
-                {errors.timeToRead.message as string}
-              </span>
-            )}
-          </Label>
-        </div>
-        <div
-          className={`${styles.postInformation__form_line} ${styles.postInformation__form_secondLine}`}
-        >
-          <div className={styles.postInformation__form_secondLine_author}>
-            <span>Autor</span>
-            <div
-              className={styles.postInformation__form_secondLine_author_options}
-            >
-              <label htmlFor="radio-button-eu-mesmo">
-                <input
-                  checked={!anotherPerson}
-                  type="radio"
-                  id="radio-button-eu-mesmo"
-                  name="autor"
-                  onChange={() => setAnotherPerson(false)}
-                />
-                Eu mesmo
-              </label>
-              <label htmlFor="radio-button-outra-pessoa">
-                <input
-                  checked={anotherPerson}
-                  type="radio"
-                  id="radio-button-outra-pessoa"
-                  name="autor"
-                  onChange={() => setAnotherPerson(true)}
-                />
-                Outra pessoa
-              </label>
-              <label
-                htmlFor="Another-person"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  gap: "5px",
-                }}
-              >
-                <Input
-                  id={"Another-person"}
-                  {...register("author", {
-                    required: "O autor é obrigatório.",
-                  })}
-                  onChange={(e) => setAuthor(e.target.value)}
-                  ref={anotherPersonInputRef}
-                  stylesPersonalized={{ display: "inline" }}
-                  placeholder={
-                    !anotherPerson
-                      ? "Desabilitado"
-                      : "Digite o nome do autor..."
-                  }
-                  disabled={!anotherPerson}
-                  value={authorValue}
-                />
-                {errors.author && (
-                  <span
-                    style={{ color: "red", fontSize: "12px", marginTop: "2px" }}
-                  >
-                    {errors.author.message as string}
-                  </span>
-                )}
-              </label>
-            </div>
-          </div>
-          <Label text="Colaborador" htmlFor="colaborater">
-            <Input
-              id="colaborater"
-              stylesPersonalized={{ width: "125px" }}
-              {...register("collaborator")}
-            />
-          </Label>
 
-          <Label text="Imagem principal" htmlFor="image-upload">
-            <ImageUpload
-              ref={imageInputRef}
-              onImageChange={handleImageChange}
-              // stylesPersonalized={{ marginTop: "20px" }}
+            <input
+              type="checkbox"
+              id="radio-button-eu-mesmo"
+              onChange={(e) => (e.target.checked ? setAnotherPerson(false) : setAnotherPerson(true))}
+              style={{
+                position: "absolute",
+                top: "50%",
+                transform: "translateY(-50%)",
+                right: "10px",
+                cursor: "pointer",
+              }}
+              checked={!anotherPerson}
             />
-          </Label>
-        </div>
+          </div>
+          {errors.author && (
+            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>{errors.author.message as string}</span>
+          )}
+        </Label>
+
+        <Label text="Colaborador" htmlFor="colaborater">
+          <Input id="colaborater" stylesPersonalized={{ width: "100%" }} {...register("collaborator")} />
+        </Label>
+
+        <Label text="Imagem principal" htmlFor="image-upload" required>
+          <ImageUpload
+            ref={imageInputRef}
+            onImageChange={handleImageChange}
+            // stylesPersonalized={{ marginTop: "20px" }}
+          />
+        </Label>
       </div>
     </div>
   );

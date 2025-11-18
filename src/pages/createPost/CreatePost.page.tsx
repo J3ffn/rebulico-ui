@@ -114,18 +114,16 @@ const CreatePostPage = () => {
               <Icon src={checkmarkOutline} ariaLabel="checked"></Icon>
             </button>
           </div>
-          <ContentBound personalPadding="40px 90px 0px 90px" classNamePersonalized={styles.content_bound}>
-            <PostInformationDefine
-              ref={postInfoRef}
-              onChange={setPostInfo}
-              initialData={postInfo}
-              tags={tags}
-              setTag={setTag}
-            />
-            <div style={{ marginTop: "1rem" }}>
-              <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />
-            </div>
-          </ContentBound>
+          <PostInformationDefine
+            ref={postInfoRef}
+            onChange={setPostInfo}
+            initialData={postInfo}
+            tags={tags}
+            setTag={setTag}
+          />
+          <div style={{ marginTop: "1.5rem" }}>
+            <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />
+          </div>
         </CreateNoticeStorage>
       </ContentBound>
     </div>

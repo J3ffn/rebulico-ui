@@ -5,6 +5,7 @@ import { Tag } from "src/shared/models/Notice.model";
 
 interface SelectProps {
   label: string;
+  render: () => React.JSX.Element;
   placeholder: string;
   attributes?: React.SelectHTMLAttributes<any>;
   options: {
@@ -15,6 +16,7 @@ interface SelectProps {
 }
 
 const Select: React.FC<SelectProps> = ({
+  render,
   label,
   placeholder,
   attributes,
@@ -23,7 +25,7 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <label htmlFor={label} className={styles.label_select_container}>
-      {label}
+      {render()}
       <select
         id={label}
         {...(register ? register : {})}

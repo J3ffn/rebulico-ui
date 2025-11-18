@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .submit_button {
@@ -18,4 +19,46 @@
   color: #fff;
   cursor: pointer;
   font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit_button:hover {
+  background-color: #8b0775;
+}
+
+.page_title {
+  position: relative;
+  opacity: 1;
+  font-size: 2.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+  .page_title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .page_title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .page_title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .submit_button {
+    width: 100%;
+  }
+
+  .page_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
 }
