@@ -93,8 +93,10 @@ const CreatePostPage = () => {
       await createPost(formData);
 
       showToast("Post criado com sucesso", "success");
-      postInfoRef.current?.resetForm();
-      contentEditorRef.current?.resetForm();
+      if(postInfoRef?.current && contentEditorRef?.current){
+        postInfoRef.current.resetForm();
+        contentEditorRef.current.resetForm();
+      }
     } catch (error) {
       console.error("Erro ao criar o post:", error);
       showToast("Erro ao criar o post", "error");
