@@ -1,3 +1,7 @@
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: "Heuvetica neue 5", sans-serif;
 }
