@@ -1,19 +1,22 @@
 import React from "react";
 
 import styles from "./Select.module.css";
+import { Tag } from "src/shared/models/Notice.model";
 
 interface SelectProps {
   label: string;
+  render: () => React.JSX.Element;
   placeholder: string;
   attributes?: React.SelectHTMLAttributes<any>;
   options: {
-    name: string;
+    tag: Tag;
     attributes?: React.OptionHTMLAttributes<any>;
   }[];
   register?: ReturnType<any>;
 }
 
 const Select: React.FC<SelectProps> = ({
+  render,
   label,
   placeholder,
   attributes,
@@ -22,7 +25,7 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <label htmlFor={label} className={styles.label_select_container}>
-      {label}
+      {render()}
       <select
         id={label}
         {...(register ? register : {})}
@@ -34,11 +37,11 @@ const Select: React.FC<SelectProps> = ({
         </option>
         {options.map((option, index) => (
           <option
-            key={`${index}-${option.name}`}
+            key={`${index}-${option.tag._id}`}
             {...option.attributes}
-            value={option.name}
+            value={String(option.tag._id)}
           >
-            {option.name}
+            {option.tag.name}
           </option>
         ))}
       </select>

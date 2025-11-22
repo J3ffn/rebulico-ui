@@ -44,7 +44,7 @@ export const ToastStorage = ({ children }: { children: React.ReactNode }) => {
         onClose={handleClose}
         TransitionComponent={toast.Transition}
         key={toast.Transition.name}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <Alert
           onClose={handleClose}

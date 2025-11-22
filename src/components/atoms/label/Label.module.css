@@ -1,8 +1,10 @@
 .label_container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+
 .label_text_container {
   display: flex;
   width: fit-content;

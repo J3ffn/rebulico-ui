@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ContentBound from "src/components/molecules/ContentBound/ContentBound";
 
 import styles from "./CreatePost.module.css";
@@ -10,40 +10,44 @@ import PostInformationDefine, {
 import { useToast } from "src/context/toast/Toast.context";
 import Icon from "src/components/atoms/Icon/Icon";
 import checkmarkOutline from "src/assets/images/default/checkmark-outline.svg";
-
-const extractImageOrderAndAttributes = (html: string) => {
-  const div = document.createElement("div");
-  div.innerHTML = html;
-  const images = Array.from(div.querySelectorAll("img"));
-  return images.map((img) => ({
-    src: img.src,
-    alt: img.alt,
-    width: img.width,
-    height: img.height,
-  }));
-};
+import { createPost } from "src/shared/api";
+import { getTags } from "src/shared/api/endpoints/tags/Tags.endpoints";
+import { Tag } from "src/shared/models/Notice.model";
+import { AuthContext } from "src/context/auth/auth.context";
+import { slugify } from "mui-tiptap";
 
 const CreatePostPage = () => {
-  const [postInfo, setPostInfo] = useState<PostInformationForm | undefined>(
-    undefined
-  );
+  const authContext = useContext(AuthContext);
+  const userInfo = authContext?.authInfo?.userInfo;
+  const [postInfo, setPostInfo] = useState<PostInformationForm | undefined>(undefined);
   const [postContent, setPostContent] = useState<{
     content: string;
-    images: File[];
-  }>({ content: "", images: [] });
+    imageUrls: File[];
+  }>({ content: "", imageUrls: [] });
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [tag, setTag] = useState<Tag | undefined>(undefined);
   const postInfoRef = useRef<any>(null);
   const contentEditorRef = useRef<any>(null);
   const toastContext = useToast();
   const showToast = toastContext!.showToast;
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleContentChange = ({
-    content,
-    images,
-  }: {
-    content: string;
-    images: File[];
-  }) => {
-    setPostContent({ content, images });
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await getTags();
+        setTags(response);
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+        showToast("Ocorreu um erro ao buscar as tags.", "error");
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  const handleContentChange = ({ content, images }: { content: string; images: File[] }) => {
+    setPostContent({ content, imageUrls: images });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,15 +61,48 @@ const CreatePostPage = () => {
       return;
     }
 
-    console.log("Informações do post:", postInfo);
-    console.log("Conteúdo do post:", postContent.content);
-    console.log("Imagens do conteúdo:", postContent.images);
+    try {
+      setIsLoading(true);
+      const payload = {
+        title: postInfo!.title,
+        tag: {
+          ...tag,
+          slug: slugify(tag!.name),
+        },
+        author: {
+          id: userInfo?._id,
+          name: userInfo?.username,
+        },
+        content: postContent.content,
+        collaborator: postInfo?.collaborator,
+        published_at: new Date().toISOString(),
+      };
 
-    const imageAttributes = extractImageOrderAndAttributes(postContent.content);
-    console.log(
-      "Ordem e atributos das imagens extraídas do HTML:",
-      imageAttributes
-    );
+      if (!postInfo?.collaborator) {
+        delete payload.collaborator;
+      }
+
+      const formData = new FormData();
+
+      formData.append("data", JSON.stringify(payload));
+      formData.append("banner", postInfo!.principalImage!);
+      postContent.imageUrls.forEach((image) => {
+        formData.append("images", image, image.name);
+      });
+
+      await createPost(formData);
+
+      showToast("Post criado com sucesso", "success");
+      if(postInfoRef?.current && contentEditorRef?.current){
+        postInfoRef.current.resetForm();
+        contentEditorRef.current.resetForm();
+      }
+    } catch (error) {
+      console.error("Erro ao criar o post:", error);
+      showToast("Erro ao criar o post", "error");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -74,23 +111,21 @@ const CreatePostPage = () => {
         <CreateNoticeStorage>
           <div className={styles.page_header}>
             <h1 className={styles.page_title}>Criação de post:</h1>
-            <button className={styles.submit_button} onClick={handleSubmit}>
-              Concluir e publicar
+            <button className={styles.submit_button} onClick={handleSubmit} disabled={isLoading}>
+              {isLoading ? "Publicando..." : "Concluir e publicar"}
               <Icon src={checkmarkOutline} ariaLabel="checked"></Icon>
             </button>
           </div>
-          <ContentBound personalPadding="40px 90px 0px 90px">
-            <PostInformationDefine
-              ref={postInfoRef}
-              onChange={setPostInfo}
-              initialData={postInfo}
-            />
-            <ContentEditor
-              ref={contentEditorRef}
-              onChange={handleContentChange}
-              initialContent={postContent}
-            />
-          </ContentBound>
+          <PostInformationDefine
+            ref={postInfoRef}
+            onChange={setPostInfo}
+            initialData={postInfo}
+            tags={tags}
+            setTag={setTag}
+          />
+          <div style={{ marginTop: "1.5rem" }}>
+            <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />
+          </div>
         </CreateNoticeStorage>
       </ContentBound>
     </div>
