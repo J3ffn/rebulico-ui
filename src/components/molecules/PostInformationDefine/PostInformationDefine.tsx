@@ -10,7 +10,6 @@ import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
 import Label from "src/components/atoms/label/Label";
 import { useForm } from "react-hook-form";
 import { Tag } from "src/shared/models/Notice.model";
-// import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
 
 interface PostInformationProps {
   onChange: (data: PostInformationForm) => void;
@@ -48,7 +47,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
   });
   const imageInputRef = useRef<any>(null);
 
-  const username = JSON.parse(localStorage.getItem("authInfo") || "{}").userInfo.username;
+  const username = JSON.parse(localStorage.getItem("authInfo") || "{}")?.userInfo?.username;
   const authorValue = watch("author");
 
   useEffect(() => {
@@ -88,12 +87,6 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     }),
     [trigger, reset]
   );
-
-  // const { setNoticeField } = useCreateNotice();
-
-  // function informationChange(field: string, value: string) {
-  //   setNoticeField(field, value)
-  // }
 
   const handleImageChange = (file: File | null) => {
     if (file) {
@@ -213,7 +206,6 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
           <ImageUpload
             ref={imageInputRef}
             onImageChange={handleImageChange}
-            // stylesPersonalized={{ marginTop: "20px" }}
           />
         </Label>
       </div>

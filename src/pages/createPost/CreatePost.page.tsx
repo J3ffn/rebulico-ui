@@ -32,17 +32,17 @@ const CreatePostPage = () => {
   const showToast = toastContext!.showToast;
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      try {
-        const response = await getTags();
-        setTags(response);
-      } catch (error) {
-        console.error("Error fetching tags:", error);
-        showToast("Ocorreu um erro ao buscar as tags.", "error");
-      }
-    };
+  const fetchTags = async () => {
+    try {
+      const response = await getTags();
+      setTags(response);
+    } catch (error) {
+      console.error("Error fetching tags:", error);
+      showToast("Ocorreu um erro ao buscar as tags.", "error");
+    }
+  };
 
+  useEffect(() => {
     fetchTags();
   }, []);
 
@@ -90,10 +90,14 @@ const CreatePostPage = () => {
         formData.append("images", image, image.name);
       });
 
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      })
+
       await createPost(formData);
 
       showToast("Post criado com sucesso", "success");
-      if(postInfoRef?.current && contentEditorRef?.current){
+      if (postInfoRef?.current && contentEditorRef?.current) {
         postInfoRef.current.resetForm();
         contentEditorRef.current.resetForm();
       }
