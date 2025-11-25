@@ -9,19 +9,21 @@ import Select from "src/components/atoms/select/Select";
 import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
 import Label from "src/components/atoms/label/Label";
 import { useForm } from "react-hook-form";
-import { Tag } from "src/shared/models/Notice.model";
+import { Category, Tag } from "src/shared/models/Notice.model";
 
 interface PostInformationProps {
   onChange: (data: PostInformationForm) => void;
   initialData?: PostInformationForm;
   tags: Tag[];
   setTag: (tag: Tag) => void;
+  categories: Category[];
+  setCategory: (category: Category) => void;
 }
 
 export interface PostInformationForm {
   title: string;
   tag: string;
-  timeToRead: string;
+  category: string;
   author: string;
   collaborator: string;
   principalImage: File | null;
@@ -39,7 +41,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     defaultValues: props.initialData || {
       title: "",
       tag: "",
-      timeToRead: "",
+      category: "",
       author: "",
       principalImage: null,
     },
@@ -144,26 +146,34 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
           )}
         </div>
 
-        <Label text="Tempo de leitura" htmlFor="read-time" required>
-          <Input
-            id="read-time"
-            stylesPersonalized={{ width: "100%" }}
-            placeholder="Tempo de leitura"
-            {...register("timeToRead", {
-              required: "O tempo de leitura é obrigatório.",
-            })}
-            onChange={(e) => {
-              setValue("timeToRead", e.target.value.replace(/[^0-9]/g, ""), {
-                shouldValidate: true,
-              });
+        <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+          <Select
+            render={() => {
+              return (
+                <label htmlFor="category">
+                  Categoria<span style={{ color: "red", marginLeft: '2px' }}>*</span>
+                </label>
+              );
             }}
+            label="Categoria *"
+            placeholder="Selecionen uma Categoria"
+            options={props?.categories?.map((category) => ({
+              category: category as Category,
+              attributes: {},
+            }))}
+            attributes={{
+              onChange: ({ target }) => {
+                setValue("category", target.value, { shouldValidate: true });
+                props.setCategory(props.categories.find((category) => category._id === target.value) as Category);
+              },
+            }}
+            register={register("category", { required: "A categoria é obrigatória." })}
           />
-          {errors.timeToRead && (
-            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>
-              {errors.timeToRead.message as string}
-            </span>
+          {errors.category && (
+            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>{errors.category.message as string}</span>
           )}
-        </Label>
+        </div>
+
         <Label text="Autor" htmlFor="Another-person" required>
           <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: "5px" }}>
             <Input

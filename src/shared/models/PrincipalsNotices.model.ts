@@ -10,6 +10,14 @@ interface Media {
   alt: string;
 }
 
+export interface Categorie {
+  _id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  color?: string;
+}
+
 export interface NewsItem {
   id: string;
   title: string;
@@ -22,7 +30,7 @@ export interface NewsItem {
     text: string;
     color: string;
   };
-  categorie: string;
+  categorie: Categorie;
   summary?: string;
 }
 

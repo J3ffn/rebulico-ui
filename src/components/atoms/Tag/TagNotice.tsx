@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./TagNotice.module.css";
+import { Categorie } from "src/shared/models/PrincipalsNotices.model";
 
 interface TagPostProps {
   tag: {
     text: string;
     color: string;
   };
-  categorie: string;
+  categorie: Categorie;
   haveTextBackground?: boolean;
   stylesPersonalized?: React.CSSProperties
 }
@@ -37,8 +38,8 @@ const TagPost: React.FC<TagPostProps> = ({
       >
         {tag?.text}
       </span>
-      <span className={styles.dividor_tag}>{tag && categorie && "|"}</span>
-      {categorie && <span className={styles.categorie}>{categorie}</span>}
+      <span className={styles.dividor_tag}>{tag && categorie?.name && "|"}</span>
+      {categorie && <span className={styles.categorie}>{categorie?.name}</span>}
     </div>
   );
 };

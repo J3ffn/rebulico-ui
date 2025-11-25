@@ -25,6 +25,14 @@ export interface Tag {
   slug: string;
 }
 
+export interface Category {
+  _id: Id;
+  name: string;
+  slug: string;
+  description?: string;
+  color?: string;
+}
+
 export interface Id {
   $oid: string;
 }

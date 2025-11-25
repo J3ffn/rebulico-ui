@@ -12,9 +12,10 @@ import Icon from "src/components/atoms/Icon/Icon";
 import checkmarkOutline from "src/assets/images/default/checkmark-outline.svg";
 import { createPost } from "src/shared/api";
 import { getTags } from "src/shared/api/endpoints/tags/Tags.endpoints";
-import { Tag } from "src/shared/models/Notice.model";
+import { Category, Tag } from "src/shared/models/Notice.model";
 import { AuthContext } from "src/context/auth/auth.context";
 import { slugify } from "mui-tiptap";
+import { getCategories } from "src/shared/api/endpoints/categories/Categories.endpoint";
 
 const CreatePostPage = () => {
   const authContext = useContext(AuthContext);
@@ -26,6 +27,8 @@ const CreatePostPage = () => {
   }>({ content: "", imageUrls: [] });
   const [tags, setTags] = useState<Tag[]>([]);
   const [tag, setTag] = useState<Tag | undefined>(undefined);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [category, setCategory] = useState<Category | undefined>(undefined);
   const postInfoRef = useRef<any>(null);
   const contentEditorRef = useRef<any>(null);
   const toastContext = useToast();
@@ -42,8 +45,19 @@ const CreatePostPage = () => {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const response = await getCategories();
+      setCategories(response);
+    } catch (error) {
+      console.error(error);
+      showToast("Ocorreu um erro ao buscar as categorias.", "error");
+    }
+  };
+
   useEffect(() => {
     fetchTags();
+    fetchCategories();
   }, []);
 
   const handleContentChange = ({ content, images }: { content: string; images: File[] }) => {
@@ -69,6 +83,7 @@ const CreatePostPage = () => {
           ...tag,
           slug: slugify(tag!.name),
         },
+        categorie: category,
         author: {
           id: userInfo?._id,
           name: userInfo?.username,
@@ -92,7 +107,7 @@ const CreatePostPage = () => {
 
       formData.forEach((value, key) => {
         console.log(`${key}: ${value}`);
-      })
+      });
 
       await createPost(formData);
 
@@ -126,6 +141,8 @@ const CreatePostPage = () => {
             initialData={postInfo}
             tags={tags}
             setTag={setTag}
+            categories={categories}
+            setCategory={setCategory}
           />
           <div style={{ marginTop: "1.5rem" }}>
             <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />
