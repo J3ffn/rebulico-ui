@@ -25,7 +25,7 @@ export interface PostInformationForm {
   tag: string;
   category: string;
   author: string;
-  collaborator: string;
+  collaborators: string;
   principalImage: File | null;
 }
 
@@ -43,6 +43,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
       tag: "",
       category: "",
       author: "",
+      collaborators: "",
       principalImage: null,
     },
     mode: "onChange",
@@ -84,6 +85,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
         reset();
         setAnotherPerson(false);
         setValue("author", username, { shouldValidate: true });
+        setValue("collaborators", "", { shouldValidate: true });
         imageInputRef.current.reset();
       },
     }),
@@ -210,8 +212,8 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
           )}
         </Label>
 
-        <Label text="Colaborador" htmlFor="colaborater">
-          <Input id="colaborater" stylesPersonalized={{ width: "100%" }} {...register("collaborator")} />
+        <Label text="Colaborador" htmlFor="collaborators">
+          <Input id="collaborators" stylesPersonalized={{ width: "100%" }} {...register("collaborators")} />
         </Label>
 
         <Label text="Imagem principal" htmlFor="image-upload" required>

@@ -77,6 +77,8 @@ const CreatePostPage = () => {
 
     try {
       setIsLoading(true);
+
+      const collaborators = postInfo?.collaborators?.split(",")?.map((collaborator) => ({ name: collaborator.trim() })) || [];
       const payload = {
         title: postInfo!.title,
         tag: {
@@ -89,13 +91,9 @@ const CreatePostPage = () => {
           name: userInfo?.username,
         },
         content: postContent.content,
-        collaborator: postInfo?.collaborator,
+        collaborators,
         published_at: new Date().toISOString(),
       };
-
-      if (!postInfo?.collaborator) {
-        delete payload.collaborator;
-      }
 
       const formData = new FormData();
 
