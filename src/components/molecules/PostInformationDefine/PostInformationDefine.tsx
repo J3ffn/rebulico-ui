@@ -128,9 +128,10 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
               );
             }}
             label="Tag *"
-            placeholder="Selecionen uma Tag"
+            placeholder="Selecione uma Tag"
             options={props?.tags?.map((tag) => ({
-              tag: tag as Tag,
+              name: tag.name,
+              value: String(tag._id),
               attributes: {},
             }))}
             attributes={{
@@ -158,7 +159,8 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
             label="Categoria *"
             placeholder="Selecionen uma Categoria"
             options={props?.categories?.map((category) => ({
-              category: category as Category,
+              name: category.name,
+              value: String(category._id),
               attributes: {},
             }))}
             attributes={{

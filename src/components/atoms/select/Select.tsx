@@ -1,7 +1,6 @@
 import React from "react";
 
 import styles from "./Select.module.css";
-import { Category, Tag } from "src/shared/models/Notice.model";
 
 interface SelectProps {
   label: string;
@@ -9,8 +8,8 @@ interface SelectProps {
   placeholder: string;
   attributes?: React.SelectHTMLAttributes<any>;
   options: {
-    tag?: Tag;
-    category?: Category;
+    name: string;
+    value: string;
     attributes?: React.OptionHTMLAttributes<any>;
   }[];
   register?: ReturnType<any>;
@@ -38,11 +37,11 @@ const Select: React.FC<SelectProps> = ({
         </option>
         {options.map((option, index) => (
           <option
-            key={`${index}-${option?.tag?._id}`}
+            key={`${index}-${option.value}`}
             {...option.attributes}
-            value={String(option?.tag?._id) || String(option?.category?._id)}
+            value={option.value}
           >
-            {option?.tag?.name || option?.category?.name}
+            {option.name || option.name}
           </option>
         ))}
       </select>

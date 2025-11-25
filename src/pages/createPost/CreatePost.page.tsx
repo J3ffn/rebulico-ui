@@ -70,7 +70,7 @@ const CreatePostPage = () => {
     const isPostInfoValid = await postInfoRef.current?.validate();
     const isContentValid = await contentEditorRef.current?.validate();
 
-    if (!isPostInfoValid || !isContentValid) {
+    if (!isPostInfoValid || !isContentValid || postInfo?.principalImage === null) {
       showToast("Por favor, preencha todos os campos obrigatórios.", "error");
       return;
     }
@@ -103,10 +103,6 @@ const CreatePostPage = () => {
       formData.append("banner", postInfo!.principalImage!);
       postContent.imageUrls.forEach((image) => {
         formData.append("images", image, image.name);
-      });
-
-      formData.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
       });
 
       await createPost(formData);
