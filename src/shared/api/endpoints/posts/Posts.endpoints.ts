@@ -1,64 +1,21 @@
-// import { DefaultNotice, NoticesWithDetails } from "src/utiils/mocks/Notices";
-
-const BASE_URL = import.meta.env.VITE_API_URL;
+import axiosClient from "src/utiils/axiosClient";
 
 export const getPrincipalsPosts = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/principals/posts`);
-    if (!response.ok) {
-      return {
-        error: response.body,
-      };
-    }
-    return response.json();
-  } catch (error: any) {
-    return {
-      error: error.message,
-    };
-  }
+  const response = await axiosClient.get("/principals/posts");
+  return response.data;
 };
 
 export const getNotice = async (idPost: string) => {
-  try {
-    const response = await fetch(`${BASE_URL}/post/${idPost}`);
-    if (!response.ok) {
-      return {
-        error: response.body,
-      };
-    }
-    return response.json();
-  } catch (error: any) {
-    return {
-      error: error.message,
-    };
-  }
-
-  // const postFinded = NoticesWithDetails[idPost];
-
-  // if (!postFinded) {
-  //   return DefaultNotice;
-  // }
-
-  // return postFinded;
+  const response = await axiosClient.get(`/post/${idPost}`);
+  return response.data;
 };
 
 export const createPost = async (postData: FormData) => {
-  const token = JSON.parse(localStorage.getItem("authInfo") || "{}").token;
-  const response = await fetch(`${BASE_URL}/post`, {
-    method: "POST",
-    headers: {
-      // "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${token}`,
-    },
-    body: postData,
-  });
-
-  return response.json();
+  const response = await axiosClient.post(`/post`, postData, { headers: { "Content-Type": "multipart/form-data" } });
+  return response.data;
 };
 
-// function buildReturn(data, error = null) {
-//   return {
-//     haveError: error && true,
-//     data: data
-//   }
-// }
+export const getPostsByCategorySlug = async (categorySlug: string) => {
+  const response = await axiosClient.get(`/post/category/${categorySlug}`);
+  return response.data;
+};

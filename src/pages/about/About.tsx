@@ -4,6 +4,7 @@ import firstMember from "../../assets/images/about/01.jpg";
 import secondMember from "../../assets/images/about/02.jpeg";
 import thirdMember from "../../assets/images/about/03.png";
 import fourthMember from "../../assets/images/about/04.jpg";
+import fifthMember from "../../assets/images/about/05.png";
 
 const About = () => {
   return (
@@ -15,7 +16,7 @@ const About = () => {
         <img className={styles.people_images} src={secondMember} alt="" />
         <img className={styles.people_images} src={thirdMember} alt="" />
         <img className={styles.people_images} src={fourthMember} alt="" />
-        <img className={styles.people_images} src={""} alt="" />
+        <img className={styles.people_images} src={fifthMember} alt="" />
       </div>
 
       <div className={styles.about_text_container}>

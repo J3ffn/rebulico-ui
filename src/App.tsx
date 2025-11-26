@@ -12,6 +12,7 @@ import { RequireAuth } from "./utiils/RequireAuth";
 import { ToastStorage } from "./context/toast/Toast.context";
 import About from "./pages/about/About";
 import NotFound from "./pages/notFound/NotFound";
+import PostsPerCategory from "./pages/postsPerCategory/PostsPerCategory";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             {/* FLUXOS */}
             <Route path="/" element={<PageTemplate mainContent={<HomePage />} />} />
             <Route path="/noticia/:id" element={<PageTemplate mainContent={<NoticePage />} />} />
+            <Route path="/categoria/:slug" element={<PageTemplate mainContent={<PostsPerCategory />} />} />
             <Route path="/quem-somos" element={<PageTemplate mainContent={<About />} />} />
 
             {/* CREATE POSTS */}

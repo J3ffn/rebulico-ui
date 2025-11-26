@@ -44,7 +44,6 @@ const LatestPosts: React.FC<LatestPostsProps> = ({ content }) => {
             />
             <div className={styles.latest_posts_item_informations}>
               <h2>{item.title}</h2>
-              <h3>{item.initialText}</h3>
               <TagPost
                 tag={item.tag}
                 categorie={item.categorie}

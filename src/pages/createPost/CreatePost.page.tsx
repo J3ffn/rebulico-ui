@@ -12,9 +12,10 @@ import Icon from "src/components/atoms/Icon/Icon";
 import checkmarkOutline from "src/assets/images/default/checkmark-outline.svg";
 import { createPost } from "src/shared/api";
 import { getTags } from "src/shared/api/endpoints/tags/Tags.endpoints";
-import { Tag } from "src/shared/models/Notice.model";
+import { Category, Tag } from "src/shared/models/Notice.model";
 import { AuthContext } from "src/context/auth/auth.context";
 import { slugify } from "mui-tiptap";
+import { getCategories } from "src/shared/api/endpoints/categories/Categories.endpoint";
 
 const CreatePostPage = () => {
   const authContext = useContext(AuthContext);
@@ -26,24 +27,37 @@ const CreatePostPage = () => {
   }>({ content: "", imageUrls: [] });
   const [tags, setTags] = useState<Tag[]>([]);
   const [tag, setTag] = useState<Tag | undefined>(undefined);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [category, setCategory] = useState<Category | undefined>(undefined);
   const postInfoRef = useRef<any>(null);
   const contentEditorRef = useRef<any>(null);
   const toastContext = useToast();
   const showToast = toastContext!.showToast;
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      try {
-        const response = await getTags();
-        setTags(response);
-      } catch (error) {
-        console.error("Error fetching tags:", error);
-        showToast("Ocorreu um erro ao buscar as tags.", "error");
-      }
-    };
+  const fetchTags = async () => {
+    try {
+      const response = await getTags();
+      setTags(response);
+    } catch (error) {
+      console.error("Error fetching tags:", error);
+      showToast("Ocorreu um erro ao buscar as tags.", "error");
+    }
+  };
 
+  const fetchCategories = async () => {
+    try {
+      const response = await getCategories();
+      setCategories(response);
+    } catch (error) {
+      console.error(error);
+      showToast("Ocorreu um erro ao buscar as categorias.", "error");
+    }
+  };
+
+  useEffect(() => {
     fetchTags();
+    fetchCategories();
   }, []);
 
   const handleContentChange = ({ content, images }: { content: string; images: File[] }) => {
@@ -56,31 +70,30 @@ const CreatePostPage = () => {
     const isPostInfoValid = await postInfoRef.current?.validate();
     const isContentValid = await contentEditorRef.current?.validate();
 
-    if (!isPostInfoValid || !isContentValid) {
+    if (!isPostInfoValid || !isContentValid || postInfo?.principalImage === null) {
       showToast("Por favor, preencha todos os campos obrigatórios.", "error");
       return;
     }
 
     try {
       setIsLoading(true);
+
+      const collaborators = postInfo?.collaborators?.split(",")?.map((collaborator) => ({ name: collaborator.trim() })) || [];
       const payload = {
         title: postInfo!.title,
         tag: {
           ...tag,
           slug: slugify(tag!.name),
         },
+        categorie: category,
         author: {
           id: userInfo?._id,
           name: userInfo?.username,
         },
         content: postContent.content,
-        collaborator: postInfo?.collaborator,
+        collaborators,
         published_at: new Date().toISOString(),
       };
-
-      if (!postInfo?.collaborator) {
-        delete payload.collaborator;
-      }
 
       const formData = new FormData();
 
@@ -93,7 +106,7 @@ const CreatePostPage = () => {
       await createPost(formData);
 
       showToast("Post criado com sucesso", "success");
-      if(postInfoRef?.current && contentEditorRef?.current){
+      if (postInfoRef?.current && contentEditorRef?.current) {
         postInfoRef.current.resetForm();
         contentEditorRef.current.resetForm();
       }
@@ -122,6 +135,8 @@ const CreatePostPage = () => {
             initialData={postInfo}
             tags={tags}
             setTag={setTag}
+            categories={categories}
+            setCategory={setCategory}
           />
           <div style={{ marginTop: "1.5rem" }}>
             <ContentEditor ref={contentEditorRef} onChange={handleContentChange} initialContent={postContent} />

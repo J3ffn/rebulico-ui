@@ -9,22 +9,23 @@ import Select from "src/components/atoms/select/Select";
 import ImageUpload from "src/components/atoms/ImageUpload/ImageUpload";
 import Label from "src/components/atoms/label/Label";
 import { useForm } from "react-hook-form";
-import { Tag } from "src/shared/models/Notice.model";
-// import { useCreateNotice } from "src/hooks/useContext/useCreateNotice";
+import { Category, Tag } from "src/shared/models/Notice.model";
 
 interface PostInformationProps {
   onChange: (data: PostInformationForm) => void;
   initialData?: PostInformationForm;
   tags: Tag[];
   setTag: (tag: Tag) => void;
+  categories: Category[];
+  setCategory: (category: Category) => void;
 }
 
 export interface PostInformationForm {
   title: string;
   tag: string;
-  timeToRead: string;
+  category: string;
   author: string;
-  collaborator: string;
+  collaborators: string;
   principalImage: File | null;
 }
 
@@ -40,15 +41,16 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
     defaultValues: props.initialData || {
       title: "",
       tag: "",
-      timeToRead: "",
+      category: "",
       author: "",
+      collaborators: "",
       principalImage: null,
     },
     mode: "onChange",
   });
   const imageInputRef = useRef<any>(null);
 
-  const username = JSON.parse(localStorage.getItem("authInfo") || "{}").userInfo.username;
+  const username = JSON.parse(localStorage.getItem("authInfo") || "{}")?.userInfo?.username;
   const authorValue = watch("author");
 
   useEffect(() => {
@@ -83,17 +85,12 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
         reset();
         setAnotherPerson(false);
         setValue("author", username, { shouldValidate: true });
+        setValue("collaborators", "", { shouldValidate: true });
         imageInputRef.current.reset();
       },
     }),
     [trigger, reset]
   );
-
-  // const { setNoticeField } = useCreateNotice();
-
-  // function informationChange(field: string, value: string) {
-  //   setNoticeField(field, value)
-  // }
 
   const handleImageChange = (file: File | null) => {
     if (file) {
@@ -133,9 +130,10 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
               );
             }}
             label="Tag *"
-            placeholder="Selecionen uma Tag"
+            placeholder="Selecione uma Tag"
             options={props?.tags?.map((tag) => ({
-              tag: tag as Tag,
+              name: tag.name,
+              value: String(tag._id),
               attributes: {},
             }))}
             attributes={{
@@ -151,26 +149,35 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
           )}
         </div>
 
-        <Label text="Tempo de leitura" htmlFor="read-time" required>
-          <Input
-            id="read-time"
-            stylesPersonalized={{ width: "100%" }}
-            placeholder="Tempo de leitura"
-            {...register("timeToRead", {
-              required: "O tempo de leitura é obrigatório.",
-            })}
-            onChange={(e) => {
-              setValue("timeToRead", e.target.value.replace(/[^0-9]/g, ""), {
-                shouldValidate: true,
-              });
+        <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+          <Select
+            render={() => {
+              return (
+                <label htmlFor="category">
+                  Categoria<span style={{ color: "red", marginLeft: '2px' }}>*</span>
+                </label>
+              );
             }}
+            label="Categoria *"
+            placeholder="Selecionen uma Categoria"
+            options={props?.categories?.map((category) => ({
+              name: category.name,
+              value: String(category._id),
+              attributes: {},
+            }))}
+            attributes={{
+              onChange: ({ target }) => {
+                setValue("category", target.value, { shouldValidate: true });
+                props.setCategory(props.categories.find((category) => category._id === target.value) as Category);
+              },
+            }}
+            register={register("category", { required: "A categoria é obrigatória." })}
           />
-          {errors.timeToRead && (
-            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>
-              {errors.timeToRead.message as string}
-            </span>
+          {errors.category && (
+            <span style={{ color: "red", fontSize: "12px", marginTop: "2px" }}>{errors.category.message as string}</span>
           )}
-        </Label>
+        </div>
+
         <Label text="Autor" htmlFor="Another-person" required>
           <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: "5px" }}>
             <Input
@@ -205,15 +212,14 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
           )}
         </Label>
 
-        <Label text="Colaborador" htmlFor="colaborater">
-          <Input id="colaborater" stylesPersonalized={{ width: "100%" }} {...register("collaborator")} />
+        <Label text="Colaborador" htmlFor="collaborators">
+          <Input id="collaborators" stylesPersonalized={{ width: "100%" }} {...register("collaborators")} />
         </Label>
 
         <Label text="Imagem principal" htmlFor="image-upload" required>
           <ImageUpload
             ref={imageInputRef}
             onImageChange={handleImageChange}
-            // stylesPersonalized={{ marginTop: "20px" }}
           />
         </Label>
       </div>
