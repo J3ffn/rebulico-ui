@@ -1,11 +1,14 @@
 export interface NoticeModel {
   id: string;
+  _id: string;
   title: string;
   author: Author;
   read_time: number;
   status: string;
   content: string;
   published_at: PublishedAt;
+  category: Category;
+  bannerImage: string;
   tag: Tag;
 }
 

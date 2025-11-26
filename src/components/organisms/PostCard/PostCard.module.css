@@ -1,0 +1,20 @@
+.card,
+.card_header {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.card_header {
+  gap: 1.2rem;
+}
+
+.card_image {
+  object-fit: cover;
+  max-height: 200px;
+  border-radius: 10px;
+}

@@ -48,10 +48,10 @@ const HamburgerMenu: React.FC = () => {
           <a style={{ color: "#FF8000" }}>(Grandes) reportagens</a>
           <ul className={styles.menu_subCategory}>
             <li>
-              <Link to={"/"}>UFPB pelo avesso</Link>
+              <Link to={"/categoria/ufpb-pelo-avesso"}>UFPB pelo avesso</Link>
             </li>
             <li>
-              <Link to={"/"}>Se essa rua fosse minha</Link>
+              <Link to={"/categoria/se-essa-rua-fosse-minha"}>Se essa rua fosse minha</Link>
             </li>
           </ul>
         </li>
@@ -59,7 +59,7 @@ const HamburgerMenu: React.FC = () => {
           <a style={{ color: "#931981" }}>Culturas midiáticas</a>
           <ul className={styles.menu_subCategory}>
             <li>
-              <Link to={"/"}>Resenhas críticas</Link>
+              <Link to={"/categoria/resenhas-criticas"}>Resenhas críticas</Link>
             </li>
           </ul>
         </li>
