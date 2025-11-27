@@ -78,7 +78,7 @@ const CreatePostPage = () => {
     try {
       setIsLoading(true);
 
-      const collaborators = postInfo?.collaborators?.split(",")?.map((collaborator) => ({ name: collaborator.trim() })) || [];
+      // const collaborators = postInfo?.collaborators?.split(",")?.map((collaborator) => ({ name: collaborator.trim() })) || [];
       const payload = {
         title: postInfo!.title,
         tag: {
