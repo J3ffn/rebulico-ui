@@ -91,7 +91,7 @@ const CreatePostPage = () => {
           name: userInfo?.username,
         },
         content: postContent.content,
-        collaborators,
+        collaborator: [],
         published_at: new Date().toISOString(),
       };
 

@@ -85,7 +85,7 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
         reset();
         setAnotherPerson(false);
         setValue("author", username, { shouldValidate: true });
-        setValue("collaborators", "", { shouldValidate: true });
+        // setValue("collaborators", "", { shouldValidate: true });
         imageInputRef.current.reset();
       },
     }),
@@ -212,9 +212,9 @@ const PostInformationDefine = forwardRef((props: PostInformationProps, ref) => {
           )}
         </Label>
 
-        <Label text="Colaborador" htmlFor="collaborators">
+        {/* <Label text="Colaborador" htmlFor="collaborators">
           <Input id="collaborators" stylesPersonalized={{ width: "100%" }} {...register("collaborators")} />
-        </Label>
+        </Label> */}
 
         <Label text="Imagem principal" htmlFor="image-upload" required>
           <ImageUpload
